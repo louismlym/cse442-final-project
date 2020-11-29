@@ -1,61 +1,95 @@
 <!DOCTYPE HTML>
 <html xml:lang="en" lang="en">
 <head>
-  <title>CSE442 | Final Project</title>
-  <style media="all">
-* { padding: 0; margin: 0; }
- body {
-  margin: 0 auto 0 auto;
-  padding: 0;
-  max-width: 1200px;
-  font-family: "Avenir", "Avenir Next", Helvetica Neue, Arial;
-  font-size: 0.95em;
-}
- a, a:visited { text-decoration: none; color: #7533f4; }
-a:hover { text-decoration: underline; color: #f4b014; }
- h1, h2, h3, h4, h5 {
-  color: #492a7c;
-  background-color: inherit;
-  font-weight: normal;
-  padding: 0 0 5px 0;
-  margin: 15px 0 0 0;
-  border: none;
-  clear: right;
-}
-h1 { font-size: 24pt; margin:  5px 0 10px 0; line-height: 28px; }
-h2 { font-size: 14pt; margin: 30px 0 15px 0; letter-spacing: 0.01em; border-bottom: 1px solid #ccc;  line-height: 20px;}
-h3 { font-size: 13pt; }
-h4 { font-size: 12pt; }
-h5 { font-size: 11pt; }
-p { margin: 0 0 10px 0; }
- .content {
-  margin: 0;
-  padding: 15px 20px;
-  background-color: #ffffff;
-}
- .title, .title h1, .title a {
-  color: #492a7c;
-  font-size: 24pt;
-  margin-bottom: 20px;
-  margin-top: 5px;
-}
- .footer {
-  border-top: 1px solid #ccc;
-  margin-top: 30px;
-  padding-top: 4px;
-  text-align: right;
-  font-size: 12px;
-}
-.footer a {
-  color: #21346B;
-}
-.footer a:hover {
-  color: #ce3333;
-}
-  </style>
+  <title>Food Access in the United States</title>
+
+  <!--jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!--D3-->
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+
+  <!--Topojson-->
+  <script src="https://unpkg.com/topojson-client@3"></script>
+
+  <!--Fullpage.js-->
+  <link rel="stylesheet" type="text/css" href="./css/jquery.fullPage.css">
+  <script type="text/javascript" src="./js/lib/jquery.fullpage.extensions.min.js"></script>
+  <script type="text/javascript" src="./js/lib/jquery.fullpage.min.js"></script>
+
+  <!--Custom Scripts-->
+  <script src="./js/main.js"></script>
+
+  <!--Stylesheets-->
+  <link rel="stylesheet" type="text/css" href="./css/index.css">
 </head>
 <body>
-<div class="content">
+  <div id="fullpage">
+    <div class="section" data-tooltip="Introduction" data-anchor="introduction">
+      <div class="center-wrapper">
+        <h1>Food Access<span class="normal-letter-spacing"> in the United States</span></h1>
+      </div>
+      <div class="arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="section" data-tooltip="Placeholder" data-anchor="placeholder">
+      <div class="center-wrapper">
+        <p>Some paragraph to talk about food access, purpose of this website, or something.</p>
+      </div>
+    </div>
+    <div class="section" data-tooltip="Map" data-anchor="map">
+      <div class="section-header">
+        <h2>SOME TITLE: Map Visualization</h2>
+        <p>Explain something about visualization here</p>
+      </div>
+      <div class="section-content">
+        <div class="viz">
+          Put viz here
+        </div>
+      </div>
+    </div>
+    <div class="section" data-tooltip="Second Viz" data-anchor="second-viz">
+      <div class="section-header">
+        <h2>SOME TITLE: Second visualization</h2>
+        <p>Explain something about visualization here</p>
+      </div>
+      <div class="section-content">
+        <div class="viz">
+          Put viz here
+        </div>
+      </div>
+    </div>
+    <div class="section" data-tooltip="Third Viz" data-anchor="third-viz">
+      <div class="section-header">
+        <h2>SOME TITLE: Third visualization</h2>
+        <p>Explain something about visualization here</p>
+      </div>
+      <div class="section-content">
+        <div class="viz">
+          Put viz here
+        </div>
+      </div>
+    </div>
+    <div class="section" data-tooltip="About Us" data-anchor="about-us">
+      <div class="section-row"></div>
+      <div class="section-header">
+        <h2>About Us</h2>
+      </div>
+      <div class="section-content">
+        <ul>
+          <li>Hannah Cheung</li>
+          <li>Louis Maliyam</li>
+          <li>Mariam Mayanja</li>
+          <li>Rachel Ye</li>
+          <li>Suchi Sridhar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<!-- <div class="content">
    <section class="title">
     <a href="/">Food Access in the United States</a>
   </section>
@@ -83,7 +117,7 @@ p { margin: 0 0 10px 0; }
     <a href="https://courses.cs.washington.edu/courses/cse442/20au/">CSE 442 Data Visualization</a>
     <a href="http://www.washington.edu">University of Washington</a>
   </div>
- </div>
+ </div> -->
 </body>
 </html> 
 
