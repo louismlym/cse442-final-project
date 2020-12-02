@@ -14,7 +14,7 @@ h1 {
   letter-spacing: 0.2em;
   line-height: 28px;
 }
-h2 { font-size: 23pt; letter-spacing: 0.1em; line-height: 20px; }
+h2 { font-size: 23pt; letter-spacing: 0.1em; line-height: 40px; }
 h3 { font-size: 13pt; }
 h4 { font-size: 12pt; }
 h5 { font-size: 11pt; }
@@ -39,6 +39,10 @@ a, a:visited {
 
 .section-header {
   margin-left: 4vw;
+}
+
+.section-header p {
+  width: 90%;
 }
 
 .section-content {
