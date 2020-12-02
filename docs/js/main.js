@@ -1,5 +1,5 @@
 /**
- * jQuery, D3.js, Topojson-client, and fullPage were imported in index.html
+ * jQuery, D3.js, Topojson-client, fullPage, and other customed js were imported in index.html
 */
 
 (function() {
@@ -13,15 +13,26 @@
     });
   
     $.fn.fullpage.setAllowScrolling(true);
+    $('.arrow').click(function(e) {
+      $.fn.fullpage.moveSectionDown();
+    });
   });
 
   $(window).on("load", init);
 
   async function init() {
-    $('.arrow').click(function(e) {
-      $.fn.fullpage.moveSectionDown();
-    });
-    // Start main function here
+    await loadDataset();  // from load-dataset.js
+    setVisSize();
+    showVisualizations();
+  }
+
+  function setVisSize() {
+    MAP_HEIGHT = 600;
+    MAP_WIDTH = 1000;
+  }
+
+  function showVisualizations() {
+    $("#map-vis").append(getMapVis());
   }
 
 })();

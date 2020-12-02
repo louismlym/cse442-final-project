@@ -1,0 +1,63 @@
+#map-vis svg {
+  font-size: 14px !important
+}
+
+.state {
+  opacity: 1;
+  transition: opacity 0.5s, visibility 0.5s;
+  stroke-width: 1;
+}
+
+.state.active {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.county-boundary {
+  stroke: black;
+  stroke-width: 0.25;
+}
+
+#map-vis .mouse-on {
+  stroke: red !important;
+}
+
+#map-vis text {
+  opacity: 1;
+  transition: opacity 0.5s, visibility 0.5s;
+  font-size: 13px !important;
+}
+
+#map-vis text.hidden {
+  display: initial;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#map-vis line {
+  opacity: 1;
+  transition: opacity 0.5s, visibility 0.5s;
+  fill: white;
+  stroke: white !important;
+}
+
+#map-vis line.hidden {
+  display: initial;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#DC-text {
+  display: none;
+}
+
+#DE-text, #MD-text, #RI-text, #HI-text {
+  fill: white;
+  stroke: white;
+}
+
+#map-vis {
+  width: 60%;
+  height: auto;
+  padding-left: 20px;
+}
