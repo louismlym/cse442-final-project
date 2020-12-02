@@ -67,6 +67,8 @@ li {
   mix-blend-mode: difference;
   margin-top: -7px;
   letter-spacing: 0.05em;
+  background-color: rgba(27, 27, 27, 0.95);
+  padding: 0 1px;
 }
 #fp-nav ul li a span {
   background-color: white;
