@@ -33,7 +33,7 @@ a, a:visited {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 90%;
   text-align: center;
 }
 
@@ -112,4 +112,8 @@ li {
 
 .hidden {
   display: none;
+}
+
+.red-color {
+  color: red;
 }
