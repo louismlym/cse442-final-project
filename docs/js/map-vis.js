@@ -12,50 +12,106 @@ var MAP_HEIGHT;
 
   // ========================== Prepare Data ==========================
   // -------------------------- Group and Find Total Pop. --------------------------
-  // This is only used to calculate weighted average of share in each county
-  // Map{"<state>,<county>" => #populationInCounty}
+  const racialCountColumns = ["TractWhite",
+    "TractBlack",
+    "TractAsian",
+    "TractNHOPI",
+    "TractAIAN",
+    "TractOMultir",
+    "TractHispanic"
+  ];
+
+  let columnsToSum = ["POP2010"].concat(racialCountColumns);
+
+  /* 
+  This is only used to calculate weighted average of share in each county
+  Map{"<state>,<county>" => {
+     "POP2010": #populationInCounty,
+     "TractWhite": #whitePopulationInCounty,
+     "TractBlack": #blackPopulationInCounty,
+     ...
+  }}
+  */
   const countyTotalPop = d3.rollup(FOOD_ACCESS_DATASET,
-    v => d3.sum(v, d => +d.POP2010),
+    v => Object.fromEntries(columnsToSum.map(col => [col, d3.sum(v, d => {
+      return +d[col];
+    })])),
     d => d.State + "," + d.County);
-  
-  // Map{state => #populationInCounty}
+
+  /*
+  Map{state => {
+     "POP2010": #populationInState,
+     "TractWhite": #whitePopulationInState,
+     "TractBlack": #blackPopulationInState,
+     ...
+  }}
+  */
   const stateTotalPop = d3.rollup(FOOD_ACCESS_DATASET,
-    v => d3.sum(v, d => +d.POP2010),
+    v => Object.fromEntries(columnsToSum.map(col => [col, d3.sum(v, d => {
+      return +d[col];
+    })])),
     d => d.State);
   
-    // -------------------------- Aggregate Data --------------------------
+  // -------------------------- Aggregate Data --------------------------
   // These columns of data will be sum over
   // Code example is retrieved and modified from https://observablehq.com/@danielkerrigan/sum-multiple-columns
-  const columnsToSum = ["LILATracts_1And10", "lapop1share", "lalowi1share", "lapop10share", "lalowi10share"];
+  const racialShareColumns = ["lawhite10share",
+    "lablack10share",
+    "laasian10share",
+    "lanhopi10share",
+    "laaian10share",
+    "laomultir10share",
+    "lahisp10share"];
 
-  const stateFoodDeserts = d3.rollup(FOOD_ACCESS_DATASET,
+  columnsToSum = ["lapop10share"].concat(racialShareColumns);
+
+  const columnToDivide = {
+    "lapop10share": "POP2010",
+    "lawhite10share": "TractWhite",
+    "lablack10share": "TractBlack",
+    "laasian10share": "TractAsian",
+    "lanhopi10share": "TractNHOPI",
+    "laaian10share": "TractAIAN",
+    "laomultir10share": "TractOMultir",
+    "lahisp10share": "TractHispanic"
+  }
+
+  const statePopShare = d3.rollup(FOOD_ACCESS_DATASET,
     v => Object.fromEntries(columnsToSum.map(col => [col, d3.sum(v, d => {
-      // No. of food deserts, just simply adding them up
-          if (col === "LILATracts_1And10") {
-            return +d[col]; // + makes d[col] becomes number
-          }
       // Find weighted average of share
-      return d[col] * d.POP2010 / stateTotalPop.get(d.State);
+      return d[col] * d.POP2010 / stateTotalPop.get(d.State)[columnToDivide[col]];
     })])),
     d => d.State);
 
-  const countyFoodDeserts = d3.rollup(FOOD_ACCESS_DATASET,
+  const countyPopShare = d3.rollup(FOOD_ACCESS_DATASET,
     v => Object.fromEntries(columnsToSum.map(col => [col, d3.sum(v, d => {
-      // No. of food deserts, just simply adding them up
-      if (col === "LILATracts_1And10") {
-        return +d[col]; // + makes d[col] becomes number
-      }
       // Find weighted average of share (because a county is listed in lots of rows in FOOD_ACCESS_DATASET)
-      return d[col] * d.POP2010 / countyTotalPop.get(d.State + "," + d.County);
+      return d[col] * d.POP2010 / countyTotalPop.get(d.State + "," + d.County)[columnToDivide[col]];
     })])),
     // Name each county as "<state>,<county>" because counties' names can be duplicated across states!
-      d => d.State + "," + d.County);
+    d => d.State + "," + d.County);
+  
+  // -------------------------- Find Range of Each State/Data --------------------------
+  const addRangeValue = function(value, key, map) {
+    let min = 1;
+    let max = 0;
+    for (let col in value) {
+      if (racialShareColumns.includes(col)) {
+        min = Math.min(min, value[col]);
+        max = Math.max(max, value[col])
+      }
+    }
+    map.get(key)["range"] = max - min;
+  }
+
+  statePopShare.forEach(addRangeValue);
+  countyPopShare.forEach(addRangeValue);
     
   // -------------------------- Define getMapVis function --------------------------
   getMapVis = function() {
     const path = d3.geoPath();
-    const color = d3.scaleSequential([0, 1], d3.interpolateBlues).nice();
-    const countyColor = d3.scaleSequential([0, 1], d3.interpolateBlues).nice();
+    const color = d3.scaleSequential([0, 0.4], d3.interpolateReds).nice();
+    const countyColor = d3.scaleSequential([0, 1], d3.interpolatePurples).nice();
     const zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on("zoom", zoomed);
@@ -81,9 +137,9 @@ var MAP_HEIGHT;
           .attr("fill", d => {
             const state = getStateFromID(d.id);
             const key = state + "," + d.properties.name;
-            const value = countyFoodDeserts.get(key);
+            const value = countyPopShare.get(key);
             if (value) {
-              return countyColor(value.lapop1share);
+              return countyColor(value.range);
             }
             return "#444";
           })
@@ -100,7 +156,7 @@ var MAP_HEIGHT;
       .data(topojson.feature(US, US.objects.states).features)
       .join("path")
         .attr("id", d => STATE_INFORMATION.find(s => (s.name === d.properties.name)).state)
-        .attr("fill", d => color(stateFoodDeserts.get(d.properties.name).lapop1share))
+        .attr("fill", d => color(statePopShare.get(d.properties.name).range))
         .attr("class", "state")
         .on("click", stateClicked)
         .attr("d", path);
@@ -201,13 +257,13 @@ var MAP_HEIGHT;
     svg.append("g")
       .attr("id", "color-legend-state")
       .attr("transform", "translate(" + MAP_HEIGHT + ",20)")
-      .append(() => legend({ color, title: "Population > 1 mile from supermarket (%)", width: 260, tickFormat: '%' }));
+      .append(() => legend({ color, title: "Range of low food access pop. (%) among racial groups", width: 260, tickFormat: '%' }));
   
     svg.append("g")
       .attr("id", "color-legend-county")
       .attr("transform", "translate(" + MAP_HEIGHT + ",20)")
       .attr("class", "hidden")
-      .append(() => legend({ color: countyColor, title: "Population > 1 mile from supermarket (%)", width: 260, tickFormat: '%' }));
+      .append(() => legend({ color: countyColor, title: "Range of low food access pop. (%) among racial groups", width: 260, tickFormat: '%' }));
 
     // -------------------------- States Tooltip Events --------------------------
     const tooltip = svg.append("g");
@@ -216,7 +272,7 @@ var MAP_HEIGHT;
       tooltip.call(
         callout,
         `${d.properties.name}
-Pop. > 1 mile from supermarket: ${(stateFoodDeserts.get(d.properties.name).lapop1share * 100).toFixed(2)}%`
+Range: ${(statePopShare.get(d.properties.name).range * 100).toFixed(2)}%`
       );
       let cursor = d3.pointer(event, this);
       cursor[0] = cursor[0] * currentTransform["k"] + currentTransform["x"];
@@ -241,15 +297,12 @@ Pop. > 1 mile from supermarket: ${(stateFoodDeserts.get(d.properties.name).lapop
     const mouseMoveEventCounty = function(event, d) {
       const county = d.properties.name;
       const key = STATE_INFORMATION.find(s => s.state === active.node().id).name + "," + county;
-      const value = countyFoodDeserts.get(key);
+      const value = countyPopShare.get(key);
       let text = `${county}
 Data Unavailable`;
       if (value) {
         text = `${county}
-Pop. > 1 mile from supermarket: ${(value.lapop1share * 100).toFixed(2)}%
-Pop. > 1 mile from supermarket (low income): ${(value.lalowi1share * 100).toFixed(2)}%
-Pop. > 10 miles from supermarket: ${(value.lapop10share * 100).toFixed(2)}%
-Pop. > 10 miles from supermarket (low income): ${(value.lalowi10share * 100).toFixed(2)}%`
+Range: ${(value.range * 100).toFixed(2)}%`
       }
       tooltipCounty.call(callout, text);
       let cursor = d3.pointer(event, this);
