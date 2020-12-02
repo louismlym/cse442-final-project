@@ -3,7 +3,7 @@ var getMapVis;
 var MAP_WIDTH;
 var MAP_HEIGHT;
 
-(async function() {
+async function prepareMapVis() {
   // initial variables of the map
   let currentTransform = {"k": 1, "x": 0, "y": 0};
 
@@ -399,4 +399,4 @@ Range: ${(value.range * 100).toFixed(2)}%`
 
     return svg.node();
   }
-})();
+}

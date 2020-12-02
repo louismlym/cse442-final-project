@@ -23,16 +23,25 @@
   async function init() {
     await loadDataset();  // from load-dataset.js
     setVisSize();
+    await prepareVis();
     showVisualizations();
   }
 
   function setVisSize() {
     MAP_HEIGHT = 600;
     MAP_WIDTH = 1000;
+    BUBBLE_HEIGHT = 450;
+    BUBBLE_WIDTH = 500;
+  }
+
+  async function prepareVis() {
+    await prepareMapVis();
+    await prepareBubbleVis();
   }
 
   function showVisualizations() {
     $("#map-vis").append(getMapVis());
+    $("#bubble-vis").append(getBubbleVis());
   }
 
 })();
