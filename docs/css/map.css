@@ -61,3 +61,12 @@
   height: auto;
   padding-left: 20px;
 }
+
+/* TODO: remove this after finishing the vis */
+#chart-for-map-vis {
+  position: absolute;
+  right: 13%;
+  top: 55%;
+  padding: 35px 35px;
+  border: 2px solid white;
+}
