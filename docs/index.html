@@ -2,6 +2,7 @@
 <html xml:lang="en" lang="en">
 <head>
   <title>Food Access in the United States</title>
+  <link rel="icon" href="favicon.png" type="image/png"/>
 
   <!--jQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -33,10 +34,11 @@
 <body>
   <div id="fullpage">
     <div class="section" data-tooltip="Title" data-anchor="title">
-      <div class="center-wrapper">
-        <h1>Food Access in the United States</span></h1>
-        <h3>“The war against hunger is truly mankind’s war of liberation.” - John F. Kennedy<span class="normal-letter-spacing"></span></h3>
-        <h4>Disclaimer: this is a prototype</h4>
+      <div class="section-header">
+        <h1>Food Access in the <br> United States</span></h1>
+        <br><br>
+        <h3s>“The war against hunger is truly mankind’s war of liberation.” 
+          -John F. Kennedy</h3s>
       </div>
       <div class="arrow">
         <span></span>
@@ -45,93 +47,152 @@
       </div>
     </div>
     <div class="section" data-tooltip="Introduction" data-anchor="introduction">
-      <div class="center-wrapper">
-        <p>Is there equitable access to food access across the United States? 
-          How does food insecurity compare across the United States? Is there 
-          equitable access to food access across the United States? The goal 
-          of our visualization is to highlight the correlations between 
-          national food insecurity and food deserts and various factors, 
-          including race and ethnicity, age, access to a vehicle, and geography.
-        </p>
-        <p>
-          To answer our questions, we used a dataset from the United States 
+      <div class="center-section-header">
+        <bp>Is there equitable access to to sufficient and healthy food across the 
+          United States? How does food insecurity compare across the nation?
+        </bp><br><br>
+        <bp><span class="red-color">The goal of our visualization is to highlight 
+            the correlations between national food insecurity and various factors, 
+            including geography, race and ethnicity, age, and access to a vehicle.</span>
+        </bp><br><br>
+        <bp>To answer our questions, we used a dataset from the U.S. 
           Department of Agriculture within their Food Access Research Atlas. 
-          We used their <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/">
-            most recent dataset from 2015</a>, and wrangled and 
+          We used their most recent dataset from 2015, and wrangled and 
           cleaned the data to remove erroneous data and exclusively focus 
           on the columns we wanted to use for data analysis.
-        </p>
-        <p>
-          Although we designed our visualizations to be accessible and 
+        </bp><br><br>
+        <bp>Although we designed our visualizations to be accessible and 
           clear for any audience, our specific target audience are 
           people living in the United States. It is our responsibility 
           to ensure that residents are informed of the food insecurity 
           in their local communities and nationwide, how these problems 
           are exacerbated by race and class, and what individuals can do 
           to contribute to the reduction of this problem.
-        </p>
+        </bp>
       </div>
     </div>
-    <div class="section" data-tooltip="Racial Disparity (Heat Map)" data-anchor="racial-disparity">
-      <div class="section-header">
-        <h2>How are different <span class="red-color">racial and ethnic groups</span> relatively impacted by food insecurity?</h2>
-        <p>
-          The heat map below shows the states with the largest disparity between racial and 
-          ethnic groups living in food deserts. The bar graph to its side shows the 
-          percentage of each racial and ethnic group for that area is impacted by 
-          food insecurity. The heat map is encoded by the maximum disparity between 
-          racial and ethnic groups and the amount of food insecurity they experience.
-        </p>
-      </div>
-      <div class="section-content">
-        <div id="map-vis"></div>
-        <div id="chart-for-map-vis">
-          Under construction... <br />
-          There will be a chart <br/>
-          corresponding to a <br />
-          hovered state / county.
-        </div>
-      </div>
-    </div>
-    <div class="section" id="priority-section" data-tooltip="Places That Need Priority" data-anchor="places-that-need-priority">
-      <div class="section-header">
-        <h2>How are different  <span class="red-color">states and counties</span> in the United States relatively impacted by food insecurity?</h2>
-        <p>All of this data begs the question, how should states be prioritized when it 
-          comes to fighting food insecurity? One approach would be to prioritize the areas 
-          most gravely impacted by food insecurity. Another approach would be to look more 
-          closely at the different demographics who are the most vulnerable. 
-          The below graphic lets us examine both.</p>
-      </div>
-      <div class="section-content">
-        <div class="vis">
-          Under construction... (sketch here)
-          <img src="vis2-sketch.jpg" />
-        </div>
-      </div>
-    </div>
-    <div class="section" id="bubble-section" data-tooltip="The Big Picture of Food Deserts" data-anchor="big-picture-of-food-deserts">
-      <div class="section-header">
-        <h2>Among 3141 counties, there are <span class="red-color">2074</span> counties with food desert(s)</h2>
-        <p>Food desert is an area where the majority of the population has low
-          access to affordable and nutritious food</p>
+    <div class="section" data-tooltip="Food Deserts" data-anchor="food-deserts">
+      <div class="left-section-header">
+        <bp><i>Food insecurity</i> is when an individual is not sure where their food will come from 
+          because they have little or no access to nutritious food. There are many adverse 
+          physical and mental effects of food insecurity, including hunger, malnutrition, 
+          birth defects, aggression, anxiety, and chronic illness.
+        </bp><br><br>
+        <bp>For this project, we specifically measured food insecurity as it relates to food 
+          deserts. An <i>urban food desert</i> is a county where residents have to drive more than 
+          1 mile to the nearest grocery store, while a <i>rural food desert</i> is a county where 
+          residents have to drive more than 10 miles to the nearest grocery store. Although 
+          both urban and rural communities suffer from scarce access to healthy food, urban 
+          areas usually get more assistance. Based on the limitations of our dataset and the 
+          fact that there are higher rates of food insecurity in rural food deserts, we decided 
+          to exclusively focus on rural food deserts for our analysis.
+        </bp><br><br>
+        <bp><span class="red-color">Among the 3,141 counties in the United States, 2,074 of them 
+          are food deserts. This means that more than 65% of the counties in the nation have 
+          limited access to affordable and healthy food.</span>
+        </bp>
       </div>
       <div class="section-content">
         <div id="bubble-vis"></div>
       </div>
     </div>
+    <div class="section" data-tooltip="Racial and Ethnic Correlation" data-anchor="racial-correlation">
+      <div class="up-section-header">
+        <h2>How are different <span class="red-color">racial and ethnic groups</span> relatively impacted by food insecurity?</h2>
+        <p>The heat map shows the states with the largest disparity between racial and ethnic groups 
+          living in food deserts. For example, ___ has one of the deepest hues because it has the 
+          largest disparity between racial and ethnic groups that live in a rural food desert. 
+          In ___, ___% of ___ people are in a rural food desert, whereas a much smaller percentage 
+          of ___ people (___%) suffer from food insecurity in a rural food desert. This shows a large 
+          disparity between the proportion of any one racial group who are in food deserts.
+        </p>
+        <p>You can click on the map to see how the racial and ethnic groups most impacted by food 
+          insecurity for an area change. The linked bar graph shows the percentage breakdowns of each 
+          racial and ethnic group in that specific area.
+        </p>
+      </div>
+      <div class="section-content">
+        <div id="map-vis"></div>
+        <div id="tbd-linked-state-vis">
+          TBD/UNDER CONSTRUCTION: <br/>
+          There will also be a linked bar graph <br/>
+          that corresponds to the state/county <br/>
+          that is being hovered over.
+        </div>
+      </div>
+    </div>
+    <div class="section" data-tooltip="Age Correlation" data-anchor="age-correlation">
+      <div class="up-section-header">
+        <h2>How are different <span class="red-color">age groups</span> relatively impacted by food insecurity?</h2>
+        <p>Similar to racial and ethnic groups' analysis (if we have time)
+        </p>
+      </div>
+    </div>
+    <div class="section" data-tooltip="Vehicle Access Correlation" data-anchor="vehicle-correlation">
+      <div class="up-section-header">
+        <h2>How does someone's <span class="red-color">access to a vehicle</span> affect their food insecurity?</h2>
+        <p>Similar to racial and ethnic groups' analysis (if we have time)
+        </p>
+      </div>
+    </div>
+    <div class="section" id="priority-section" data-tooltip="Next Steps" data-anchor="next-steps">
+      <div class="left-section-header">
+        <h2>Next Steps</h2>
+        <p>“Hunger is not a problem. It is an obscenity. How wonderful it is that nobody 
+          need wait a single moment before starting to improve the world.” 
+          -Anne Frank
+        </p>
+        <p>All of this data begs the question, what can we do to help? How should areas 
+          or populations in the United States be prioritized when it comes to the long 
+          and hard fight against food insecurity?
+        </p>
+        <p>One viable strategy would be to prioritize the counties and areas that are most 
+          gravely impacted by food insecurity. We could also futher investigate the different 
+          demographics who are the most vulnerable to food insecurity, and address their 
+          needs first.
+        </p>
+        <p>This visualization allows us to explore both of these strategies. 
+        </p>
+      </div>
+      <div class="section-content">
+        <div class="bar-graph-vis">
+          <img src="vis2-sketch.jpg" alt="Temporary Sketch" style="position:relative; width:675px;height:650px;">
+        </div>
+      </div>
+    </div>
     <div class="section" data-tooltip="About Us" data-anchor="about-us">
       <div class="section-row"></div>
       <div class="section-header">
-        <h2>About Us</h2>
-      </div>
-      <div class="section-content">
-        <ul>
-          <li>Hannah Cheung</li>
-          <li>Louis Maliyam</li>
-          <li>Mariam Mayanja</li>
-          <li>Rachel Ye</li>
-          <li>Suchi Sridhar</li>
-        </ul>
+        <h2>About This Website</h2>
+        <h3>References</h3>
+        <p>&ensp; 1. The U.S. Department of Agriculture's 
+          <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/">
+            Food Access Research Atlas
+          </a> for 2015
+        </p>
+        <h3>Authors</h3>
+        <p>
+          &ensp; <a href="https://www.linkedin.com/in/hannahfcheung">
+            <img src="LinkedIn.png" alt="Hannah Cheung's LinkedIn" style="width:20px;height:20px;">
+          </a>Hannah Cheung <br>
+
+          &ensp; <a href="https://www.linkedin.com/in/x/">
+            <img src="LinkedIn.png" alt="Louis Maliyam's LinkedIn" style="width:20px;height:20px;">
+          </a>Louis Maliyam <br>
+
+          &ensp; <a href="https://www.linkedin.com/in/x/">
+            <img src="LinkedIn.png" alt="Mariam Mayanja's LinkedIn" style="width:20px;height:20px;">
+          </a>Mariam Mayanja <br>
+
+          &ensp; <a href="https://www.linkedin.com/in/suchisridhar/">
+            <img src="LinkedIn.png" alt="Suchi Sridhar's LinkedIn" style="width:20px;height:20px;">
+          </a>Suchi Sridhar <br>
+
+          &ensp; <a href="https://www.linkedin.com/in/rachelye1/">
+            <img src="LinkedIn.png" alt="Rachel Ye's LinkedIn" style="width:20px;height:20px;">
+          </a>Rachel Ye
+        </p>
+        <h3>Tools</h3>
       </div>
     </div>
   </div>

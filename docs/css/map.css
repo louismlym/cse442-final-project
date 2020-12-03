@@ -37,8 +37,8 @@
 #map-vis line {
   opacity: 1;
   transition: opacity 0.5s, visibility 0.5s;
-  fill: white;
-  stroke: white !important;
+  fill: #000000;
+  stroke: #000000 !important;
 }
 
 #map-vis line.hidden {
@@ -52,21 +52,24 @@
 }
 
 #DE-text, #MD-text, #RI-text, #HI-text {
-  fill: white;
-  stroke: white;
+  fill: #000000;
+  stroke: #000000;
 }
 
 #map-vis {
-  width: 60%;
-  height: auto;
-  padding-left: 20px;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 4%;
+  top: 32%;
+  padding: 10px 10px;
 }
 
 /* TODO: remove this after finishing the vis */
-#chart-for-map-vis {
+#tbd-linked-state-vis {
   position: absolute;
-  right: 13%;
-  top: 55%;
-  padding: 35px 35px;
-  border: 2px solid white;
+  top: 50%;
+  left: 65%;
+  padding: 10px 10px;
+  border: 2px solid #000000;
 }

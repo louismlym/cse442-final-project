@@ -1,26 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Gunter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 body {
   /* font-family: "Avenir", "Avenir Next", Helvetica Neue, Arial; */
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.2em;
-  color: white;
-  background-color: #1b1b1b;
+  color: #000000;
+  background-color: #f1ece6;
 }
 
-h1 {
+h1 { /* main website title */
+  font-family: 'Roboto Slab', serif;
   display: inline;
-  font-size: 30pt;
-  letter-spacing: 0.2em;
-  line-height: 28px;
+  font-size: 100pt;
+  line-height: 150px;
 }
-h2 { font-size: 23pt; letter-spacing: 0.1em; line-height: 40px; }
-h3 { font-size: 13pt; }
-h4 { font-size: 12pt; }
-h5 { font-size: 11pt; }
+h2 { /* page titles */
+  font-family: 'Roboto Slab', serif;
+  font-size: 27pt; 
+  line-height: 50px;
+}
+h3s { /* SSP subtitles */
+  font-size: 20pt;
+}
+h3 { /* RS subtitles */
+  font-family: 'Roboto Slab', serif;
+  font-size: 20pt;
+}
+bp { /* bigger body text */
+  font-size: 20pt;
+  color: #202020;
+}
+p { /* main body text */
+  font-size: 18pt;
+  color: #202020;
+}
 
 a, a:visited {
-  color: #06A8FF;
+  color: #4682B4;
 }
 
 .normal-letter-spacing {
@@ -28,75 +46,86 @@ a, a:visited {
   font-size: 27pt;
 }
 
-.center-wrapper {
+.section-header {
+  margin-left: 4%;
+  padding-right: 175px;
+}
+
+.center-section-header {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
+  width: 55%;
   text-align: center;
 }
 
-.section-header {
-  margin-left: 4vw;
+.left-section-header {
+  position: absolute;
+  top: 20%;
+  margin-left: 4%;
+  padding-right: 1085px;
 }
 
-.section-header p {
-  width: 90%;
+.up-section-header {
+  position: absolute;
+  top: 3%;
+  margin-left: 4%;
+  padding-right: 175px;
 }
 
 .section-content {
-  margin-left: 4vw;
+  margin-left: 4%;
+  padding-right: 175px;
 }
 
 li {
   line-height: 1.7em;
 }
 
-.vis {
-  width: 60%;
-  height: auto;
-  padding-left: 20px;
-  border: 2px solid white;
+.bar-graph-vis {
+  position: absolute;
+  left: 56%;
+  top: 18%;
 }
 
 /* Fullpage Navigator */
 .fp-tooltip {
-  color: white !important;
-  font-family: 'Poppins', sans-serif;
+  color: #000000 !important;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.2em;
   mix-blend-mode: difference;
   margin-top: -7px;
-  letter-spacing: 0.05em;
-  background-color: rgba(27, 27, 27, 0.95);
-  padding: 0 1px;
+  background-color: rgba(f1, ec, e6, 0.95);
+  padding: 2px;
 }
 #fp-nav ul li a span {
-  background-color: white;
+  background-color: #000000;
 }
 
 /* Arrow animation (retrieved from https://freefrontend.com/css-arrows/) */
 .arrow{
   cursor: pointer;
   position: absolute;
-  top: 86%;
-  left: 50%;
+  top: 90%;
+  left: 25%;
   transform: translate(-50%,-50%);
 }
 .arrow span{
   display: block;
-  width: 30px;
-  height: 30px;
-  border-bottom: 5px solid #06A8FF;
-  border-right: 5px solid #06A8FF;
+  width: 20px;
+  height: 20px;
+  border-bottom: 5px solid #808080;
+  border-right: 5px solid #808080;
   transform: rotate(45deg);
-  margin: -10px;
-  animation: animate 2s infinite;
+  margin: -8px;
+  animation: animate 4s infinite;
 }
 .arrow span:nth-child(2){
-  animation-delay: -0.2s;
+  animation-delay: -0.5s;
 }
 .arrow span:nth-child(3){
-  animation-delay: -0.4s;
+  animation-delay: -0.7s;
 }
 @keyframes animate {
   0%{
@@ -117,7 +146,8 @@ li {
 }
 
 .red-color {
-  color: red;
+  color: #8B0000;
+  font-weight: bold;
 }
 
 /* TODO: remove this after finishing the vis */
