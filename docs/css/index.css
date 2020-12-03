@@ -13,27 +13,27 @@ body {
 h1 { /* main website title */
   font-family: 'Roboto Slab', serif;
   display: inline;
-  font-size: 90pt;
+  font-size: 80pt;
   line-height: 150px;
 }
 h2 { /* page titles */
   font-family: 'Roboto Slab', serif;
-  font-size: 25pt; 
+  font-size: 23pt; 
   line-height: 50px;
 }
 h3s { /* SSP subtitles */
-  font-size: 18pt;
+  font-size: 16pt;
 }
 h3 { /* RS subtitles */
   font-family: 'Roboto Slab', serif;
-  font-size: 18pt;
+  font-size: 16pt;
 }
 bp { /* bigger body text */
-  font-size: 18pt;
+  font-size: 16pt;
   color: #202020;
 }
 p { /* main body text */
-  font-size: 16pt;
+  font-size: 14pt;
   color: #202020;
 }
 
@@ -64,7 +64,7 @@ a, a:visited {
   position: absolute;
   top: 20%;
   margin-left: 4%;
-  padding-right: 1000px;
+  padding-right: 700px;
 }
 
 .up-section-header {
