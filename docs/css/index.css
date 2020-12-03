@@ -13,13 +13,13 @@ body {
 h1 { /* main website title */
   font-family: 'Roboto Slab', serif;
   display: inline;
-  font-size: 80pt;
-  line-height: 150px;
+  font-size: 78pt;
+  line-height: 110px;
 }
 h2 { /* page titles */
   font-family: 'Roboto Slab', serif;
   font-size: 23pt; 
-  line-height: 50px;
+  line-height: 25px;
 }
 h3s { /* SSP subtitles */
   font-size: 16pt;
@@ -64,7 +64,7 @@ a, a:visited {
   position: absolute;
   top: 20%;
   margin-left: 4%;
-  padding-right: 700px;
+  padding-right: 800px;
 }
 
 .up-section-header {
