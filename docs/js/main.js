@@ -32,16 +32,20 @@
     MAP_WIDTH = 1000;
     BUBBLE_HEIGHT = 450;
     BUBBLE_WIDTH = 500;
+    CHART_FOR_MAP_HEIGHT = 600;
+    CHART_FOR_MAP_WIDTH = 600;
   }
 
   async function prepareVis() {
     await prepareMapVis();
     await prepareBubbleVis();
+    await prepareChartForMapVis();
   }
 
   function showVisualizations() {
     $("#map-vis").append(getMapVis());
     $("#bubble-vis").append(getBubbleVis());
+    $("#chart-for-map-vis").append(getChartForMapVis());
   }
 
 })();
