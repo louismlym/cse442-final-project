@@ -4,6 +4,10 @@ function getStateFromID(id) {
   return US.objects.states.geometries.find(state => state.id === id.substring(0, 2)).properties.name;
 }
 
+function getStateNameFromAbbrv(abbrv) {
+  return STATE_INFORMATION.find(state => state.state == abbrv).name;
+}
+
 // This function is retrieved from https://observablehq.com/@d3/line-chart-with-tooltip
 function callout(g, value) {
   if (!value) return g.style("display", "none");

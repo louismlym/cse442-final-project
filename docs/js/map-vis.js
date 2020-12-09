@@ -134,6 +134,7 @@ async function prepareMapVis() {
     const countyPath = counties.selectAll("path")
         .data(topojson.feature(US, US.objects.counties).features)
         .enter().append("path")
+          .attr("id", d  => getStateFromID(d.id) + "," + d.properties.name)
           .attr("fill", d => {
             const state = getStateFromID(d.id);
             const key = state + "," + d.properties.name;
@@ -145,7 +146,8 @@ async function prepareMapVis() {
           })
           .attr("d", path)
           .attr("class", "county-boundary")
-          .on("click", reset);
+          .on("click", reset)
+          .on("mouseover", locationHovered);
 
     const states = g.append("g")
       .attr("id", "states")
@@ -159,6 +161,7 @@ async function prepareMapVis() {
         .attr("fill", d => color(statePopShare.get(d.properties.name).range))
         .attr("class", "state")
         .on("click", stateClicked)
+        .on("mouseover", locationHovered)
         .attr("d", path);
 
     // -------------------------- State Name ---------------------------
@@ -350,6 +353,8 @@ Range: ${(value.range * 100).toFixed(2)}%`
         d3.zoomIdentity,
         d3.zoomTransform(svg.node()).invert([MAP_WIDTH / 2, MAP_HEIGHT / 2])
       );
+
+      updateScaleOnMapReset();
     }
   
     function zoomed(event) {
@@ -395,6 +400,18 @@ Range: ${(value.range * 100).toFixed(2)}%`
           .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
         d3.pointer(event, svg.node())
       );
+
+      updateScaleOnStateClicked();
+    }
+
+    function locationHovered(event) {
+      var currentHoveredLocation;
+      if (event.target.id.length === 2) { // if this is state
+        currentHoveredLocation = getStateNameFromAbbrv(event.target.id);
+      } else {  // if this is county
+        currentHoveredLocation = event.target.id;
+      }
+      updateChartOnLocationChange(currentHoveredLocation);  // this one is in chart-for-map-vis.js
     }
 
     return svg.node();
