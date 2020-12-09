@@ -253,9 +253,9 @@ async function prepareChartForMapVis() {
     const title = graph.append("text")
       .attr("class", "title")
       .text("Percentage of Population > 10 Miles Away From Supermarket by Races in the United States")
-      .attr("font-size", "14px")
-      .attr("y", -margin.top * 3 / 4)
-      .attr("x", "-20px")
+      .attr("font-size", "12px")
+      .attr("y", -margin.top * 0.1)
+      .attr("x", "27px")
       .attr("font-weight", "bold")
       .attr("fill", "black");
     
