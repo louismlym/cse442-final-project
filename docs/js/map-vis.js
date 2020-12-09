@@ -96,7 +96,7 @@ async function prepareMapVis() {
     let min = 1;
     let max = 0;
     for (let col in value) {
-      if (racialShareColumns.includes(col)) {
+      if (racialShareColumns.includes(col) && value[col] !== 0) {
         min = Math.min(min, value[col]);
         max = Math.max(max, value[col])
       }
