@@ -20,6 +20,15 @@
   outline: none;
   border: solid gray 1px;
   border-radius: 5px;
+  transition: 0.3s;
+}
+
+#filter-btns button:hover {
+  opacity: 0.5;
+}
+
+#filter-btns button.active:hover {
+  opacity: 1;
 }
 
 button.active {
