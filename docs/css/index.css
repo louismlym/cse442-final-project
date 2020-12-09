@@ -9,6 +9,10 @@ body {
   background-color: #f1ece6;
 }
 
+button {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 h1 { /* main website title */
   font-family: 'Roboto Slab', serif;
   display: inline;
