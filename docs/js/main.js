@@ -28,11 +28,11 @@
   }
 
   function setVisSize() {
-    MAP_HEIGHT = 600;
+    MAP_HEIGHT = 630;
     MAP_WIDTH = 1000;
     BUBBLE_HEIGHT = 450;
     BUBBLE_WIDTH = 500;
-    CHART_FOR_MAP_HEIGHT = 600;
+    CHART_FOR_MAP_HEIGHT = 550;
     CHART_FOR_MAP_WIDTH = 600;
   }
 

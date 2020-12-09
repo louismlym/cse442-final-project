@@ -8,6 +8,10 @@ function getStateNameFromAbbrv(abbrv) {
   return STATE_INFORMATION.find(state => state.state == abbrv).name;
 }
 
+function getStateAbbrvFromName(stateName) {
+  return STATE_INFORMATION.find(state => state.name == stateName).state;
+}
+
 // This function is retrieved from https://observablehq.com/@d3/line-chart-with-tooltip
 function callout(g, value) {
   if (!value) return g.style("display", "none");

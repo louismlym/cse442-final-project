@@ -217,6 +217,7 @@ async function prepareMapVis() {
         })
         .attr("text-anchor", "middle")
         .on("click", stateClicked)
+        .on("mouseover", locationHovered)
         .text(d => STATE_INFORMATION.find(s => (s.name === d.properties.name)).state);
   
     const stateJson = topojson.feature(US, US.objects.states).features;
@@ -296,6 +297,7 @@ Range: ${(statePopShare.get(d.properties.name).range * 100).toFixed(2)}%`
       d3.select(this)
         .attr("stroke", null)
         .lower();
+      updateChartOnLocationChange("the United States");
     }
 
     // -------------------------- Counties Tooltip Events --------------------------
@@ -328,6 +330,8 @@ Range: ${(value.range * 100).toFixed(2)}%`
         .classed("mouse-on", false)
         .attr("stroke", null)
         .lower();
+
+      updateChartOnLocationChange("the United States");
     }
 
     // -------------------------- Bind Tooltips --------------------------
@@ -409,12 +413,15 @@ Range: ${(value.range * 100).toFixed(2)}%`
     }
 
     function locationHovered(event) {
-      var currentHoveredLocation;
-      if (event.target.id.length === 2) { // if this is state
-        currentHoveredLocation = getStateNameFromAbbrv(event.target.id);
-      } else {  // if this is county
-        currentHoveredLocation = event.target.id;
+      var currentHoveredLocation = event.target.id;
+      if (currentHoveredLocation.includes("text")) {
+        currentHoveredLocation = currentHoveredLocation.split("-")[0];
       }
+      console.log(currentHoveredLocation);
+      if (currentHoveredLocation.length === 2) { // if this is state
+        currentHoveredLocation = getStateNameFromAbbrv(currentHoveredLocation);
+      }
+      
       updateChartOnLocationChange(currentHoveredLocation);  // this one is in chart-for-map-vis.js
     }
 

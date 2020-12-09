@@ -53,6 +53,19 @@ async function prepareChartForMapVis() {
     })])),
     d => d.State);
   
+  /*
+  Map{state => {
+     "POP2010": #populationInUS,
+     "TractWhite": #whitePopulationInUS,
+     "TractBlack": #blackPopulationInUS,
+     ...
+  }}
+  */
+ const USTotalPop = d3.rollup(FOOD_ACCESS_DATASET,
+  v => Object.fromEntries(columnsToSum.map(col => [col, d3.sum(v, d => {
+    return +d[col];
+  })])));
+  
   // -------------------------- Aggregate Data --------------------------
   // These columns of data will be sum over
   // Code example is retrieved and modified from https://observablehq.com/@danielkerrigan/sum-multiple-columns
@@ -76,6 +89,11 @@ async function prepareChartForMapVis() {
     "laomultir10share": "TractOMultir",
     "lahisp10share": "TractHispanic"
   }
+
+  const USPopShare = d3.rollup(FOOD_ACCESS_DATASET,
+    v => Object.fromEntries(columnsToSum.map(col => [col, d3.sum(v, d => {
+      return d[col] * d.POP2010 / USTotalPop[columnToDivide[col]];
+    })])));
 
   const statePopShare = d3.rollup(FOOD_ACCESS_DATASET,
     v => Object.fromEntries(columnsToSum.map(col => [col, d3.sum(v, d => {
@@ -114,6 +132,17 @@ async function prepareChartForMapVis() {
   };
 
   let data = [];
+  for (const entry of Object.entries(USPopShare)) {
+    const column = entry[0];
+      const percentage = entry[1];
+      if (racialShareColumns.includes(column)) {
+        data.push({
+          "location": "the United States",
+          "x": columnToXLabel[column], 
+          "y": percentage
+        });
+      }
+  }
   for (const state of statePopShare.keys()) {
     for (const entry of Object.entries(statePopShare.get(state))){
       const column = entry[0];
@@ -147,7 +176,7 @@ async function prepareChartForMapVis() {
       .attr('width', CHART_FOR_MAP_WIDTH)
       .attr('height', CHART_FOR_MAP_HEIGHT);
     
-    const margin = {top: 50, right: 80, bottom: 120, left: 50};
+    const margin = {top: 70, right: 80, bottom: 120, left: 50};
     const width = container.attr("width") - margin.left - margin.right;
     const height = container.attr("height") - margin.top - margin.bottom;
 
@@ -178,29 +207,174 @@ async function prepareChartForMapVis() {
         return (d * 100).toFixed(0) + "%";
       }));
     
-    // TODO: need to use the whole US for initial data
     const bars = graph.selectAll(".bar")
-      .data(data.filter(d => d.location === "Washington"))
+      .data(data.filter(d => d.location === "the United States"))
       .enter().append("rect")
         .attr("class", "bar")
         .attr("x", function(d) { return xScale(d.x); })
         .attr("y", function(d) { return yScale(d.y); })
         .attr("fill", function(d) {return color(d.x); })
         .attr("width", xScale.bandwidth())
-        .attr("height", function(d) { return height - yScale(d.y); });
+        .attr("height", function(d) { return height - yScale(d.y); })
+    
+    const barLabels = graph.selectAll(".bar-label")
+      .data(data.filter(d => d.location === "the United States"))
+      .enter().append("text")
+        .attr("class", "bar-label")
+        .text(function(d) { return `${(d.y * 100).toFixed(2)}%`; })
+        .attr("text-anchor", "middle")
+        .attr("x", function(d) { return xScale(d.x) + xScale.bandwidth() / 2; })
+        .attr("y", function(d) { return yScale(d.y) - 37; })
+        .attr("font-size", "11px")
+        .attr("fill", "gray")
+    
+    const barLabels2 = graph.selectAll(".bar-label2")
+      .data(data.filter(d => d.location === "the United States"))
+      .enter().append("text")
+        .attr("class", "bar-label2")
+        .text("out of")
+        .attr("text-anchor", "middle")
+        .attr("x", function(d) { return xScale(d.x) + xScale.bandwidth() / 2; })
+        .attr("y", function(d) { return yScale(d.y) - 23; })
+        .attr("font-size", "11px")
+        .attr("fill", "gray");
+    
+    const barLabels3 = graph.selectAll(".bar-label3")
+      .data(data.filter(d => d.location === "the United States"))
+      .enter().append("text")
+        .attr("class", "bar-label3")
+        .text(function(d) { return `${(USTotalPop[columnToDivide[xToDataColumn[d.x]]] / USTotalPop.POP2010 * 100).toFixed(2)}%`; })
+        .attr("text-anchor", "middle")
+        .attr("x", function(d) { return xScale(d.x) + xScale.bandwidth() / 2; })
+        .attr("y", function(d) { return yScale(d.y) - 10; })
+        .attr("font-size", "11px")
+        .attr("fill", "gray");
+    
+    const title = graph.append("text")
+      .attr("class", "title")
+      .text("Percentage of Population > 10 Miles Away From Supermarket by Races in the United States")
+      .attr("font-size", "14px")
+      .attr("y", -margin.top * 3 / 4)
+      .attr("x", "-20px")
+      .attr("font-weight", "bold")
+      .attr("fill", "black");
+    
+    let minValue = d3.min(data.filter(d => d.location === "the United States" && d.y > 0), d => d.y);
+    let maxValue = d3.max(data.filter(d => d.location === "the United States" && d.y > 0), d => d.y);
+
+    const minLine = graph.append("line")
+      .attr("class", "min-line")
+      .attr("x1", xScale("American Indian & Alaska Native") - 5)
+      .attr("y1", yScale(minValue))
+      .attr("x2", xScale("Other/Multiple Race") + xScale.bandwidth() + 10)
+      .attr("y2", yScale(minValue))
+      .attr("stroke", "rgb(128, 128, 128, 0.8)")
+      .attr("stroke-width", "1px");
+    
+    const maxLine = graph.append("line")
+      .attr("class", "max-line")
+      .attr("x1", xScale("American Indian & Alaska Native") - 5)
+      .attr("y1", yScale(maxValue))
+      .attr("x2", xScale("Other/Multiple Race") + xScale.bandwidth() + 10)
+      .attr("y2", yScale(maxValue))
+      .attr("stroke", "rgb(128, 128, 128, 0.8)")
+      .attr("stroke-width", "1px");
+    
+    const minLineLabel = graph.append("text")
+      .attr("class", "min-line-label")
+      .text("min: " + (minValue * 100).toFixed(2) + "%")
+      .attr("font-size", "12px")
+      .attr("y", yScale(minValue))
+      .attr("x", xScale("Other/Multiple Race") + xScale.bandwidth() + 13)
+      .attr("fill", "gray");
+
+    const maxLineLabel = graph.append("text")
+      .attr("class", "max-line-label")
+      .text("max: " + (maxValue * 100).toFixed(2) + "%")
+      .attr("font-size", "12px")
+      .attr("y", yScale(maxValue))
+      .attr("x", xScale("Other/Multiple Race") + xScale.bandwidth() + 13)
+      .attr("fill", "gray");
     
     updateChartOnLocationChange = function(newLocation) {
-      var newData = data.filter(d => d.location === newLocation);
+      let newData = data.filter(d => d.location === newLocation);
 
-      d3.selectAll(".bar")
+      // Update bars
+      graph.selectAll(".bar")
         .data(newData)
         .transition().duration(TRANSITION_DURATION)
         .attr("x", function(d) { return xScale(d.x); })
         .attr("y", function(d) { return yScale(d.y); })
         .attr("height", function(d) { return height - yScale(d.y); });
+      
+      // Update bar labels
+      graph.selectAll(".bar-label")
+        .data(newData)
+        .transition().duration(TRANSITION_DURATION)
+          .text(function(d) { return (d.y * 100).toFixed(2) + "%"; })
+          .attr("y", function(d) { return yScale(d.y) - 37; });
+      
+      graph.selectAll(".bar-label2")
+        .data(newData)
+        .transition().duration(TRANSITION_DURATION)
+          .attr("y", function(d) { return yScale(d.y) - 23; });
+      
+      let objectToUse;
+      if (newLocation === "the United States") {
+        objectToUse = USTotalPop;
+      } else if (newLocation.includes(",")) {
+        objectToUse = countyTotalPop.get(newLocation);
+      } else {
+        objectToUse = stateTotalPop.get(newLocation);
+      }
+
+      graph.selectAll(".bar-label3")
+        .data(newData)
+        .transition().duration(TRANSITION_DURATION)
+          .text(function(d) { return `${(objectToUse[columnToDivide[xToDataColumn[d.x]]] / objectToUse.POP2010 * 100).toFixed(2)}%`; })
+          .attr("y", function(d) { return yScale(d.y) - 10; });
+      
+      // Update chart title
+      if (newLocation.includes(",")) {
+        newLocation = newLocation.split(",");
+        newLocation = newLocation[1] + ", " + getStateAbbrvFromName(newLocation[0]);
+      }
+      graph.select(".title")
+        .text("Percentage of Population > 10 Miles Away From Supermarket by Races in " + newLocation);
+
+      // Update min/max lines
+      let minValue = d3.min(newData.filter(d => d.y > 0), d => d.y);
+      let maxValue = d3.max(newData.filter(d => d.y > 0), d => d.y);
+      if (!minValue) {
+        minValue = 0;
+      }
+      if (!maxValue) {
+        maxValue = 0;
+      }
+      
+      graph.select(".min-line")
+        .transition().duration(TRANSITION_DURATION)
+        .attr("y1", yScale(minValue))
+        .attr("y2", yScale(minValue));
+
+      graph.select(".max-line")
+        .transition().duration(TRANSITION_DURATION)
+        .attr("y1", yScale(maxValue))
+        .attr("y2", yScale(maxValue));
+      
+      graph.select(".min-line-label")
+        .transition().duration(TRANSITION_DURATION)
+        .text("min: " + (minValue * 100).toFixed(2) + "%")
+        .attr("y", yScale(minValue));
+      
+      graph.select(".max-line-label")
+        .transition().duration(TRANSITION_DURATION)
+        .text("max: " + (maxValue * 100).toFixed(2) + "%")
+        .attr("y", yScale(maxValue));
     }
 
     updateScaleOnStateClicked = function() {
+      // Update y-axis domain
       yScale.domain([0, 1])
       graph.select(".y-axis")
         .transition().duration(TRANSITION_DURATION).ease(d3.easeSinInOut)
@@ -210,6 +384,7 @@ async function prepareChartForMapVis() {
     }
 
     updateScaleOnMapReset = function() {
+      // Update y-axis domain
       yScale.domain([0, 0.4])
       graph.select(".y-axis")
         .transition().duration(TRANSITION_DURATION).ease(d3.easeSinInOut)
