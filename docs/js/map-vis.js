@@ -417,11 +417,10 @@ Range: ${(value.range * 100).toFixed(2)}%`
       if (currentHoveredLocation.includes("text")) {
         currentHoveredLocation = currentHoveredLocation.split("-")[0];
       }
-      console.log(currentHoveredLocation);
       if (currentHoveredLocation.length === 2) { // if this is state
         currentHoveredLocation = getStateNameFromAbbrv(currentHoveredLocation);
       }
-      
+
       updateChartOnLocationChange(currentHoveredLocation);  // this one is in chart-for-map-vis.js
     }
 

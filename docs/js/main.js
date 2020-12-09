@@ -34,18 +34,22 @@
     BUBBLE_WIDTH = 500;
     CHART_FOR_MAP_HEIGHT = 550;
     CHART_FOR_MAP_WIDTH = 600;
+    CHART_NEXT_STEPS_HEIGHT = 500;
+    CHART_NEXT_STEPS_WIDTH = 550;
   }
 
   async function prepareVis() {
     await prepareMapVis();
     await prepareBubbleVis();
     await prepareChartForMapVis();
+    await prepareChartNextStepsVis();
   }
 
   function showVisualizations() {
     $("#map-vis").append(getMapVis());
     $("#bubble-vis").append(getBubbleVis());
     $("#chart-for-map-vis").append(getChartForMapVis());
+    $("#chart-next-steps-vis").append(getChartNextStepsVis());
   }
 
 })();

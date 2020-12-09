@@ -24,6 +24,7 @@
   <script src="./js/bubble-vis.js"></script>
   <script src="./js/map-vis.js"></script>
   <script src="./js/chart-for-map-vis.js"></script>
+  <script src="./js/chart-next-steps-vis.js"></script>
   <script src="./js/main.js"></script>
 
   <!--Stylesheets-->
@@ -31,6 +32,7 @@
   <link rel="stylesheet" type="text/css" href="./css/bubble.css">
   <link rel="stylesheet" type="text/css" href="./css/map.css">
   <link rel="stylesheet" type="text/css" href="./css/chart-for-map-vis.css">
+  <link rel="stylesheet" type="text/css" href="./css/chart-next-steps-vis.css">
 </head>
 <body>
   <div id="fullpage">
@@ -123,7 +125,7 @@
         <div id="chart-for-map-vis"></div>
       </div>
     </div>
-    <div class="section" data-tooltip="Age Correlation" data-anchor="age-correlation">
+    <!--div class="section" data-tooltip="Age Correlation" data-anchor="age-correlation">
       <div class="up-section-header">
         <h2>How are different <span class="red-color">age groups</span> relatively impacted by food insecurity?</h2>
         <p>Similar to racial and ethnic groups' analysis (if we have time)
@@ -136,7 +138,7 @@
         <p>Similar to racial and ethnic groups' analysis (if we have time)
         </p>
       </div>
-    </div>
+    </div-->
     <div class="section" id="priority-section" data-tooltip="Next Steps" data-anchor="next-steps">
       <div class="left-section-header">
         <h2>Next Steps</h2>
@@ -157,8 +159,18 @@
         </p>
       </div>
       <div class="section-content">
-        <div class="bar-graph-vis">
-          <img src="vis2-sketch.jpg" alt="Temporary Sketch" style="position:relative; width:500px;height:475px;">
+        <div id="chart-next-steps-vis">
+          <div id="filter-btns">
+            <button id="all-btn" class="active">All</button>
+            <button id="aian-btn">American Indian & Alaska Native</button>
+            <button id="asian-btn">Asian</button>
+            <button id="black-btn">Black or African American</button>
+            <button id="hisp-btn">Hispanic or Latino</button>
+            <button id="nhopi-btn">Native Hawaiian & Other Pacific Islander</button>
+            <button id="white-btn">White</button>
+            <button id="omultir-btn">Other/Multiple Race</button>
+          </div>
+          <!--img src="vis2-sketch.jpg" alt="Temporary Sketch" style="position:relative; width:500px;height:475px;"-->
         </div>
       </div>
     </div>
