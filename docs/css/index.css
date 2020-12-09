@@ -63,11 +63,18 @@ a, a:visited {
   text-align: center;
 }
 
-.left-section-header {
+.left-fd-section-header {
   position: absolute;
   top: 20%;
   margin-left: 4%;
   padding-right: 800px;
+}
+
+.left-ns-section-header {
+  position: absolute;
+  top: 20%;
+  margin-left: 4%;
+  padding-right: 900px;
 }
 
 .up-section-header {
