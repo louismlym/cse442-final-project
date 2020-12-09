@@ -101,7 +101,11 @@ async function prepareMapVis() {
         max = Math.max(max, value[col])
       }
     }
-    map.get(key)["range"] = max - min;
+    if (min === 1 && max === 0) {
+      map.get(key)["range"] = 0;
+    } else {
+      map.get(key)["range"] = max - min;
+    }
   }
 
   statePopShare.forEach(addRangeValue);
