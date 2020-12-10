@@ -340,7 +340,7 @@ async function prepareChartForMapVis() {
         newLocation = newLocation[1] + ", " + getStateAbbrvFromName(newLocation[0]);
       }
       graph.select(".title")
-        .text("Percentage of Population > 10 Miles Away From Supermarket by Races in " + newLocation);
+        .text("Percentage of Population 10+ Miles From Supermarket, by Race, in " + newLocation);
 
       // Update min/max lines
       let minValue = d3.min(newData.filter(d => d.y > 0), d => d.y);
