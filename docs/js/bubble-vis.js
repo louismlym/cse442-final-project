@@ -80,7 +80,7 @@ async function prepareBubbleVis() {
     .min(1)
     .max(10)
     .step(1)
-    .width(200)
+    .width(250)
     .fill("tomato")
     .displayValue(true)
     .displayValue(false)
@@ -91,9 +91,9 @@ async function prepareBubbleVis() {
     });
 
     g.attr("width", 200)
-    .attr("height", 100)
+    .attr("height", 50)
     .append("g")
-    .attr("transform", "translate(125,30)")
+    .attr("transform", "translate(120,40)")
     .call(slider);
 
     function transition() {

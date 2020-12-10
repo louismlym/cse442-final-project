@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 body {
   /* font-family: "Avenir", "Avenir Next", Helvetica Neue, Arial; */
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.2em;
+  /* font-family: 'Open Sans', sans-serif; */
+  font-size: 1em;
   color: #000000;
   background-color: #f1ece6;
 }
@@ -21,7 +23,7 @@ h1 { /* main website title */
 }
 h2 { /* page titles */
   font-family: 'Roboto Slab', serif;
-  font-size: 23pt; 
+  font-size: 20pt; 
   line-height: 25px;
 }
 h3s { /* SSP subtitles */
@@ -32,11 +34,16 @@ h3 { /* RS subtitles */
   font-size: 16pt;
 }
 bp { /* bigger body text */
-  font-size: 16pt;
+  font-size: 14pt;
   color: #202020;
 }
 p { /* main body text */
   font-size: 14pt;
+  color: #202020;
+}
+
+sp { /* small body text */
+  font-size: 11pt;
   color: #202020;
 }
 
@@ -65,9 +72,16 @@ a, a:visited {
 
 .left-fd-section-header {
   position: absolute;
-  top: 12%;
+  top: 19%;
   margin-left: 4%;
-  padding-right: 700px;
+  padding-right: 850px;
+}
+
+.bubble-vis-how-to {
+  position: absolute;
+  top: 17%;
+  margin-left: 56.5%;
+  padding-right: 220px;
 }
 
 .left-ns-section-header {
