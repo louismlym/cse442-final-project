@@ -61,26 +61,6 @@ async function prepareBubbleVis() {
       })
   }
 
-  var slider = d3.sliderHorizontal()
-    .min(1)
-    .max(10)
-    .step(1)
-    .width(500)
-    .fill("tomato")
-    .displayValue(true)
-    .displayValue(false)
-    .on('onchange', val => {
-      value = val;
-      d3.select("#value").text(val);
-      update();
-    });
-
-  g.attr("width", 500)
-  .attr("height", 100)
-  .append("g")
-  .attr("transform", "translate(220,30)")
-  .call(slider);
-
   getBubbleVis = function() {
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, BUBBLE_WIDTH, BUBBLE_HEIGHT])
@@ -102,6 +82,26 @@ async function prepareBubbleVis() {
           return "black";
         }
       })
+    
+    var slider = d3.sliderHorizontal()
+    .min(1)
+    .max(10)
+    .step(1)
+    .width(500)
+    .fill("tomato")
+    .displayValue(true)
+    .displayValue(false)
+    .on('onchange', val => {
+      value = val;
+      d3.select("#value").text(val);
+      update();
+    });
+
+    g.attr("width", 500)
+    .attr("height", 100)
+    .append("g")
+    .attr("transform", "translate(220,30)")
+    .call(slider);
 
     function transition() {
       const d = data[Math.floor(Math.random() * data.length)];
