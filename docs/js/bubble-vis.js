@@ -38,11 +38,11 @@ async function prepareBubbleVis() {
   }
 
   // get counts of counties that have at least 1-10 food deserts
-  var count = new Map();
+  var mapCounts = new Map();
   let values = Array.from(countyFoodDeserts.values());
   for (var i = 1; i <= 10; i++) {
     const result = values.filter(j => j >= i).length;
-    count[i] = result;
+    mapCounts[i] = result;
   }
 
   function update() {
