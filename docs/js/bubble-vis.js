@@ -51,7 +51,7 @@ async function prepareBubbleVis() {
       .data(data)
       .join("circle")
         .attr("cx", ([x]) => x)
-        .attr("cy", ([, y]) => y + 15)
+        .attr("cy", ([, y]) => y + 35)
         .attr("r", radius)
         .attr("fill", (d, i) => {
           if (i < mapCounts[value] / 10) {
@@ -90,10 +90,10 @@ async function prepareBubbleVis() {
       update();
     });
 
-    g.attr("width", 500)
+    g.attr("width", 200)
     .attr("height", 100)
     .append("g")
-    .attr("transform", "translate(100,30)")
+    .attr("transform", "translate(125,30)")
     .call(slider);
 
     function transition() {
