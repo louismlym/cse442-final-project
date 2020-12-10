@@ -176,7 +176,7 @@ async function prepareChartForMapVis() {
       .attr('width', CHART_FOR_MAP_WIDTH)
       .attr('height', CHART_FOR_MAP_HEIGHT);
     
-    const margin = {top: 70, right: 80, bottom: 120, left: 50};
+    const margin = {top: 85, right: 80, bottom: 135, left: 50};
     const width = container.attr("width") - margin.left - margin.right;
     const height = container.attr("height") - margin.top - margin.bottom;
 
@@ -252,10 +252,10 @@ async function prepareChartForMapVis() {
     
     const title = graph.append("text")
       .attr("class", "title")
-      .text("Percentage of Population > 10 Miles Away From Supermarket by Races in the United States")
+      .text("Percentage of Population 10+ Miles From Supermarket in the United States, by Race")
       .attr("font-size", "12px")
       .attr("y", -margin.top * 0.1)
-      .attr("x", "27px")
+      .attr("x", "35px")
       .attr("font-weight", "bold")
       .attr("fill", "black");
     
@@ -340,7 +340,7 @@ async function prepareChartForMapVis() {
         newLocation = newLocation[1] + ", " + getStateAbbrvFromName(newLocation[0]);
       }
       graph.select(".title")
-        .text("Percentage of Population > 10 Miles Away From Supermarket by Races in " + newLocation);
+        .text("Percentage of Population 10+ Miles From Supermarket, by Race, in " + newLocation);
 
       // Update min/max lines
       let minValue = d3.min(newData.filter(d => d.y > 0), d => d.y);
