@@ -21,3 +21,7 @@
 #bubble-section .section-header p {
   margin: 0 auto;
 }
+
+.axis text {
+  fill: black;
+}
