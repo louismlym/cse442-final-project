@@ -38,22 +38,6 @@ async function prepareBubbleVis() {
     mapCounts[i] = result;
   }
 
-  function update() {
-    g.selectAll("circle")
-    .data(data)
-    .join("circle")
-      .attr("cx", ([x]) => x)
-      .attr("cy", ([, y]) => y + 15)
-      .attr("r", radius)
-      .attr("fill", (d, i) => {
-        if (i < mapCounts[value] / 10) {
-          return "tomato";
-        } else {
-          return "black";
-        }
-      })
-  }
-
   getBubbleVis = function() {
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, BUBBLE_WIDTH, BUBBLE_HEIGHT])
@@ -61,6 +45,22 @@ async function prepareBubbleVis() {
     const g = svg.append("g");
 
     let value = 1;
+
+    function update() {
+      g.selectAll("circle")
+      .data(data)
+      .join("circle")
+        .attr("cx", ([x]) => x)
+        .attr("cy", ([, y]) => y + 15)
+        .attr("r", radius)
+        .attr("fill", (d, i) => {
+          if (i < mapCounts[value] / 10) {
+            return "tomato";
+          } else {
+            return "black";
+          }
+        })
+    }
     
     g.selectAll("circle")
     .data(data)
