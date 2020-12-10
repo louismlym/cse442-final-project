@@ -5,7 +5,7 @@ var BUBBLE_HEIGHT;
 async function prepareBubbleVis() {
   // initial variables of the chart
   let currentTransform = [BUBBLE_WIDTH / 2, BUBBLE_HEIGHT / 2, BUBBLE_HEIGHT];
-  let radius = 5;
+  let radius = 1.5;
   let step = radius * 2;
   let theta = Math.PI * (3 - Math.sqrt(5));
 
@@ -22,7 +22,7 @@ async function prepareBubbleVis() {
     v => d3.sum(v, d => +d.LILATracts_1And10),
     d => d.State + ", " + d.County);
 
-  data = Array.from({length: countyFoodDeserts.size / 10}, (_, i) => {
+  data = Array.from({length: countyFoodDeserts.size}, (_, i) => {
     const r = step * Math.sqrt(i += 0.5), a = theta * i;
     return [
       BUBBLE_WIDTH / 2 + r * Math.cos(a),
@@ -54,7 +54,7 @@ async function prepareBubbleVis() {
         .attr("cy", ([, y]) => y + 35)
         .attr("r", radius)
         .attr("fill", (d, i) => {
-          if (i < mapCounts[value] / 10) {
+          if (i < mapCounts[value]) {
             return "tomato";
           } else {
             return "black";
@@ -69,7 +69,7 @@ async function prepareBubbleVis() {
       .attr("cy", ([, y]) => y + 35)
       .attr("r", radius)
       .attr("fill", (d, i) => {
-        if (i < mapCounts[value] / 10) {
+        if (i < mapCounts[value]) {
           return "tomato";
         } else {
           return "black";
