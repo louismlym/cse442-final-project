@@ -5,7 +5,7 @@ var BUBBLE_HEIGHT;
 async function prepareBubbleVis() {
   // initial variables of the chart
   let currentTransform = [BUBBLE_WIDTH / 2, BUBBLE_HEIGHT / 2, BUBBLE_HEIGHT];
-  let radius = 6;
+  let radius = 5;
   let step = radius * 2;
   let theta = Math.PI * (3 - Math.sqrt(5));
 
