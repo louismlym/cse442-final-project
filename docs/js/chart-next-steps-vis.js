@@ -158,10 +158,11 @@ async function prepareChartNextStepsVis() {
     
     const xLabel = svg.append("text")
       .attr("class", "x-label")
-      .text("Percentage of Population > 10 Miles Away From Supermarket")
-      .attr("font-size", "11px")
-      .attr("y", margin.top / 2 - 5)
-      .attr("x", 170)
+      .text("Percentage of Population 10+ Miles From Supermarket in the United States")
+      .attr("font-size", "12px")
+      .attr("y", margin.top / 2 - 10)
+      .attr("x", 110)
+      .attr("font-weight", "bold")
       .attr("fill", "black");
 
     svg.append("g")

@@ -57,11 +57,11 @@
 }
 
 #map-vis {
-  width: 50%;
-  height: 50%;
+  width: 47%;
+  height: 47%;
   position: absolute;
   left: 4%;
-  top: 34%;
+  top: 36%;
   padding: 10px 10px;
 }
 
