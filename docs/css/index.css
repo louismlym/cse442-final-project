@@ -74,7 +74,7 @@ a, a:visited {
   position: absolute;
   top: 19%;
   margin-left: 4%;
-  padding-right: 850px;
+  padding-right: 835px;
 }
 
 .bubble-vis-how-to {
@@ -101,6 +101,11 @@ a, a:visited {
 .section-content {
   margin-left: 4%;
   padding-right: 175px;
+}
+
+.last-page-section-content {
+  margin-left: 2%;
+  padding-right: 300px;
 }
 
 li {
