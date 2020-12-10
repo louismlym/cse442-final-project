@@ -30,13 +30,6 @@ async function prepareBubbleVis() {
     ];
   });
 
-  let numCounties = 0
-  for (const [key, value] of countyFoodDeserts.entries()) {
-    if (value !== 0) {
-      numCounties += 1;
-    }
-  }
-
   // get counts of counties that have at least 1-10 food deserts
   var mapCounts = new Map();
   let values = Array.from(countyFoodDeserts.values());
@@ -50,7 +43,7 @@ async function prepareBubbleVis() {
     .data(data)
     .join("circle")
       .attr("cx", ([x]) => x)
-      .attr("cy", ([, y]) => y + 35)
+      .attr("cy", ([, y]) => y + 15)
       .attr("r", radius)
       .attr("fill", (d, i) => {
         if (i < mapCounts[value] / 10) {
@@ -87,7 +80,7 @@ async function prepareBubbleVis() {
     .min(1)
     .max(10)
     .step(1)
-    .width(500)
+    .width(200)
     .fill("tomato")
     .displayValue(true)
     .displayValue(false)
@@ -100,7 +93,7 @@ async function prepareBubbleVis() {
     g.attr("width", 500)
     .attr("height", 100)
     .append("g")
-    .attr("transform", "translate(220,30)")
+    .attr("transform", "translate(100,30)")
     .call(slider);
 
     function transition() {
