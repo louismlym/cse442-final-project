@@ -51,7 +51,7 @@ async function prepareBubbleVis() {
         .attr("r", radius)
         .attr("fill", (d, i) => {
           if (i < (numCounties / 10)) {
-            return "red";
+            return "tomato";
           } else {
             return "gray";
           }
