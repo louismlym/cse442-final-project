@@ -109,6 +109,12 @@ async function prepareBubbleVis() {
     .attr("r", radius)
     .attr("fill", "black");
 
+    svg.append("text")
+    .attr('x', BUBBLE_WIDTH / 2)
+    .attr('y', 30)
+    .style("font-size", "13px")
+    .text(" - 1 country");
+
     function transition() {
       const d = data[Math.floor(Math.random() * data.length)];
       const i = d3.interpolateZoom(currentTransform, [...d, radius * 2 + 1]);
