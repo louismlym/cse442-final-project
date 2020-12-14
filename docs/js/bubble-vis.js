@@ -5,7 +5,7 @@ var BUBBLE_HEIGHT;
 async function prepareBubbleVis() {
   // initial variables of the chart
   let currentTransform = [BUBBLE_WIDTH / 2, BUBBLE_HEIGHT / 2, BUBBLE_HEIGHT];
-  let radius = 1.5;
+  let radius = 1.6;
   let step = radius * 2;
   let theta = Math.PI * (3 - Math.sqrt(5));
 
@@ -93,8 +93,21 @@ async function prepareBubbleVis() {
     g.attr("width", 200)
     .attr("height", 50)
     .append("g")
-    .attr("transform", "translate(120,40)")
+    .attr("transform", "translate(120,65)")
     .call(slider);
+
+    // Legend for a bubble
+    svg.append("text")
+    .attr('x', BUBBLE_WIDTH / 2)
+    .attr('y', BUBBLE_HEIGHT - 10)
+    .style("font-size", "13px")
+    .text(" - 1 country");
+
+    svg.append("circle")
+    .attr("cx", BUBBLE_WIDTH / 2 - 10)
+    .attr("cy", BUBBLE_HEIGHT - 13)
+    .attr("r", radius)
+    .attr("fill", "black");
 
     function transition() {
       const d = data[Math.floor(Math.random() * data.length)];
