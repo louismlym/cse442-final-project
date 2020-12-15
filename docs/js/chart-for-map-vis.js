@@ -190,7 +190,7 @@ async function prepareChartForMapVis() {
     const yScale = d3.scaleLinear()
       .domain([0, 0.4])
       .range([height, 0]);
-    const color = d3.scaleOrdinal(d3.schemeTableau10).domain(Object.keys(xToDataColumn));
+    //const color = d3.scaleOrdinal(d3.schemeTableau10).domain(Object.keys(xToDataColumn));
     
     const xAxis = graph.append('g')
       .attr("class", "x-axis")
@@ -213,7 +213,8 @@ async function prepareChartForMapVis() {
         .attr("class", "bar")
         .attr("x", function(d) { return xScale(d.x); })
         .attr("y", function(d) { return yScale(d.y); })
-        .attr("fill", function(d) {return color(d.x); })
+        //.attr("fill", function(d) {return color(d.x); })
+        .attr("fill", "#ce4e55")
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.y); })
     
