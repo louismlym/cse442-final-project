@@ -154,7 +154,7 @@ async function prepareBubbleVis() {
     .attr('x', BUBBLE_WIDTH / 2)
     .attr('y', BUBBLE_HEIGHT - 10)
     .style("font-size", "13px")
-    .text(" - 1 country");
+    .text("1 country");
 
     svg.append("circle")
     .attr("cx", BUBBLE_WIDTH / 2 - 10)
