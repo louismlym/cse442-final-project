@@ -114,8 +114,8 @@ async function prepareMapVis() {
   // -------------------------- Define getMapVis function --------------------------
   getMapVis = function() {
     const path = d3.geoPath();
-    const color = d3.scaleSequential([0, 0.4], d3.interpolatePurples).nice();
-    const countyColor = d3.scaleSequential([0, 1], d3.interpolateBlues).nice();
+    const color = d3.scaleSequential([0, 0.4], d3.interpolateReds).nice();
+    const countyColor = d3.scaleSequential([0, 1], d3.interpolateOranges).nice();
     const zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on("zoom", zoomed);
