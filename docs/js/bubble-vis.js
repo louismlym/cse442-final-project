@@ -33,15 +33,6 @@ async function prepareBubbleVis() {
     mapCounts[i] = result;
   }
 
-  var simulation = d3.forceSimulation(data)
-                            .force("charge", d3.forceManyBody().strength([-5]))
-                            .force("x", d3.forceX())
-                            .force("y", d3.forceY())
-                            //.on("tick", getBubbleVis)
-                            //.stop();
-  
-  simulation.stop();
-
   getBubbleVis = function() {
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, BUBBLE_WIDTH, BUBBLE_HEIGHT])
@@ -78,7 +69,7 @@ async function prepareBubbleVis() {
       .attr("r", radius)
       .transition()
       //.each("circle")
-      .duration(2500)
+      .duration(4500)
       .attr("cx", ([x]) => x)
       .attr("cy", ([, y]) => y + 35)
       .transition()
@@ -114,7 +105,7 @@ async function prepareBubbleVis() {
       .attr('id', 'stat-update')
       .style("font-size", "13px")
       .attr("font-weight", "bold")
-      .text(numCounties + " out of 3141 counties in " +
+      .text(Math.round(numCounties/3141 * 100 * 100) / 100 + "% of counties in " +
           "the United States that have at least " + value + " food " + desert +
           ".");
       //d3.select("#value").text(val);
@@ -168,8 +159,9 @@ async function prepareBubbleVis() {
     .attr('id', 'stat-update')
     .style("font-size", "13px")
     .attr("font-weight", "bold")
-    .text(numCounties + " out of 3141 counties in " +
-          "the United States have at least " + value + " food desert.");
+    .text(Math.round(numCounties/3141 * 100 * 100) / 100 + "% of counties in " +
+          "the United States that have at least " + value + " food " + desert +
+          ".");
 
     function transition() {
       const d = data[Math.floor(Math.random() * data.length)];
