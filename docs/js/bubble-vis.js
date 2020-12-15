@@ -12,11 +12,6 @@ async function prepareBubbleVis() {
   // load dataset if it hasn't been loaded yet
   await loadDataset();
 
-  let sumTracts = 0;
-  for (var i = 0; i < FOOD_ACCESS_DATASET.length; i++) {
-    sumTracts += FOOD_ACCESS_DATASET[i].LILATracts_1And10;
-  }
-
   // Map{"<state>,<county>" => #number of food deserts
   let countyFoodDeserts = d3.rollup(FOOD_ACCESS_DATASET,
     v => d3.sum(v, d => +d.LILATracts_1And10),
@@ -38,6 +33,15 @@ async function prepareBubbleVis() {
     mapCounts[i] = result;
   }
 
+  var simulation = d3.forceSimulation(data)
+                            .force("charge", d3.forceManyBody().strength([-5]))
+                            .force("x", d3.forceX())
+                            .force("y", d3.forceY())
+                            //.on("tick", getBubbleVis)
+                            //.stop();
+  
+  simulation.stop();
+
   getBubbleVis = function() {
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, BUBBLE_WIDTH, BUBBLE_HEIGHT])
@@ -45,31 +49,42 @@ async function prepareBubbleVis() {
     const g = svg.append("g");
 
     let value = 1;
+    let numCounties = mapCounts[value];
+    let desert = "desert";   
 
     function update() {
       g.selectAll("circle")
       .data(data)
-      .join("circle")
-        .attr("cx", ([x]) => x)
-        .attr("cy", ([, y]) => y + 35)
-        .attr("r", radius)
-        .attr("fill", (d, i) => {
-          if (i < mapCounts[value]) {
-            return "tomato";
-          } else {
-            return "black";
-          }
-        })
+    .join("circle")
+      .attr("cx", ([x]) => x)
+      .attr("cy", ([, y]) => y + 35)
+      .attr("r", radius)
+      .transition()
+      .duration(500)
+      .style("fill", (d, i) => {
+        if (i < numCounties) {
+          return "tomato";
+        } else {
+          return "black";
+        }
+      })
     }
     
     g.selectAll("circle")
     .data(data)
     .join("circle")
+      .attr("cx", ([x]) => Math.random() * BUBBLE_WIDTH)
+      .attr("cy", ([, y]) => Math.random() * BUBBLE_HEIGHT)
+      .attr("r", radius)
+      .transition()
+      //.each("circle")
+      .duration(2500)
       .attr("cx", ([x]) => x)
       .attr("cy", ([, y]) => y + 35)
-      .attr("r", radius)
-      .attr("fill", (d, i) => {
-        if (i < mapCounts[value]) {
+      .transition()
+      .duration(500)
+      .style("fill", (d, i) => {
+        if (i < numCounties) {
           return "tomato";
         } else {
           return "black";
@@ -86,14 +101,29 @@ async function prepareBubbleVis() {
     .displayValue(false)
     .on('onchange', val => {
       value = val;
-      d3.select("#value").text(val);
+      numCounties = mapCounts[value];
+      if (value !== 1) {
+        desert = "deserts";
+      } else {
+        desert = "desert";
+      }
+      svg.select('#stat-update').remove();
+      svg.append("text")
+      .attr('x', 45)
+      .attr('y', 30)
+      .attr('id', 'stat-update')
+      .style("font-size", "13px")
+      .text(numCounties + " out of 3141 counties in " +
+          "the United States that have at least " + value + " food " + desert +
+          ".");
+      //d3.select("#value").text(val);
       update();
     });
 
     g.attr("width", 200)
     .attr("height", 50)
     .append("g")
-    .attr("transform", "translate(120,65)")
+    .attr("transform", "translate(150,65)")
     .call(slider);
 
     // Legend for a bubble
@@ -110,10 +140,12 @@ async function prepareBubbleVis() {
     .attr("fill", "black");
 
     svg.append("text")
-    .attr('x', BUBBLE_WIDTH / 2)
+    .attr('x', 45)
     .attr('y', 30)
+    .attr('id', 'stat-update')
     .style("font-size", "13px")
-    .text(" - 1 country");
+    .text(numCounties + " out of 3141 counties in " +
+          "the United States have at least " + value + " food desert.");
 
     function transition() {
       const d = data[Math.floor(Math.random() * data.length)];
