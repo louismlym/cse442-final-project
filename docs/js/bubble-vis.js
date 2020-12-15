@@ -101,7 +101,7 @@ async function prepareBubbleVis() {
       svg.select('#stat-update').remove();
       svg.append("text")
       .attr('x', 90)
-      .attr('y', 42)
+      .attr('y', 35)
       .attr('id', 'stat-update')
       .style("font-size", "13px")
       .attr("font-weight", "bold")
@@ -115,7 +115,7 @@ async function prepareBubbleVis() {
     g.attr("width", 200)
     .attr("height", 50)
     .append("g")
-    .attr("transform", "translate(150,65)")
+    .attr("transform", "translate(150,55)")
     .call(slider);
 
     // Title
@@ -145,7 +145,7 @@ async function prepareBubbleVis() {
     .attr('x', BUBBLE_WIDTH / 2)
     .attr('y', BUBBLE_HEIGHT - 10)
     .style("font-size", "13px")
-    .text(" - 1 country");
+    .text("1 country");
 
     svg.append("circle")
     .attr("cx", BUBBLE_WIDTH / 2 - 10)
@@ -155,7 +155,7 @@ async function prepareBubbleVis() {
 
     svg.append("text")
     .attr('x', 90)
-    .attr('y', 42)
+    .attr('y', 35)
     .attr('id', 'stat-update')
     .style("font-size", "13px")
     .attr("font-weight", "bold")
