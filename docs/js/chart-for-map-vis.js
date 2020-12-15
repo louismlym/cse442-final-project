@@ -176,7 +176,7 @@ async function prepareChartForMapVis() {
       .attr('width', CHART_FOR_MAP_WIDTH)
       .attr('height', CHART_FOR_MAP_HEIGHT);
     
-    const margin = {top: 80, right: 80, bottom: 135, left: 50};
+    const margin = {top: 85, right: 80, bottom: 135, left: 50};
     const width = container.attr("width") - margin.left - margin.right;
     const height = container.attr("height") - margin.top - margin.bottom;
 
@@ -190,7 +190,12 @@ async function prepareChartForMapVis() {
     const yScale = d3.scaleLinear()
       .domain([0, 0.4])
       .range([height, 0]);
+<<<<<<< HEAD
     // const color = d3.scaleOrdinal(d3.schemeTableau10).domain(Object.keys(xToDataColumn));
+=======
+    const color = d3.scaleOrdinal(d3.schemeTableau10).domain(Object.keys(xToDataColumn));
+    
+>>>>>>> parent of 339d619... change chart color and fix text overlappin
     const xAxis = graph.append('g')
       .attr("class", "x-axis")
       .attr('transform', `translate(0, ${height})`)
@@ -213,10 +218,14 @@ async function prepareChartForMapVis() {
         .attr("x", function(d) { return xScale(d.x); })
         .attr("y", function(d) { return yScale(d.y); })
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         //.attr("fill", function(d) {return color(d.x); })
 >>>>>>> 600374af67e370f26bb91c56d48b3b75a0600b00
         .attr("fill", "#ce4e55")
+=======
+        .attr("fill", function(d) {return color(d.x); })
+>>>>>>> parent of 339d619... change chart color and fix text overlappin
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.y); })
     
@@ -257,7 +266,7 @@ async function prepareChartForMapVis() {
       .attr("class", "title")
       .text("Percentage of Population 10+ Miles From Supermarket, by Race, in the United States")
       .attr("font-size", "12px")
-      .attr("y", "-50px")
+      .attr("y", -margin.top * 0.1)
       .attr("x", "39px")
       .attr("font-weight", "bold")
       .attr("fill", "black");
@@ -365,22 +374,15 @@ async function prepareChartForMapVis() {
         .attr("y1", yScale(maxValue))
         .attr("y2", yScale(maxValue));
       
-      let minY = yScale(minValue);
-      let maxY = yScale(maxValue);
-      if (minY - maxY <= 10) {
-        minY += 6;
-        maxY -= 6;
-      }
-
       graph.select(".min-line-label")
         .transition().duration(TRANSITION_DURATION)
         .text("min: " + (minValue * 100).toFixed(2) + "%")
-        .attr("y", minY);
+        .attr("y", yScale(minValue));
       
       graph.select(".max-line-label")
         .transition().duration(TRANSITION_DURATION)
         .text("max: " + (maxValue * 100).toFixed(2) + "%")
-        .attr("y", maxY);
+        .attr("y", yScale(maxValue));
     }
 
     updateScaleOnStateClicked = function() {
