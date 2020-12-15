@@ -208,7 +208,6 @@ async function prepareChartForMapVis() {
     
     const bars = graph.selectAll(".bar")
       .data(data.filter(d => d.location === "the United States"))
-      .attr("fill", "#ce4e55")
       .enter().append("rect")
         .attr("class", "bar")
         .attr("x", function(d) { return xScale(d.x); })
