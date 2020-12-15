@@ -114,8 +114,8 @@ async function prepareMapVis() {
   // -------------------------- Define getMapVis function --------------------------
   getMapVis = function() {
     const path = d3.geoPath();
-    const color = d3.scaleSequential([0, 0.4], d3.interpolateReds).nice();
-    const countyColor = d3.scaleSequential([0, 1], d3.interpolateOranges).nice();
+    const color = d3.scaleSequential([0, 0.4], d3.interpolatePurples).nice();
+    const countyColor = d3.scaleSequential([0, 1], d3.interpolateBlues).nice();
     const zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on("zoom", zoomed);
@@ -265,13 +265,13 @@ async function prepareMapVis() {
     svg.append("g")
       .attr("id", "color-legend-state")
       .attr("transform", "translate(" + MAP_HEIGHT + ",20)")
-      .append(() => legend({ color, title: "Range of low food access pop. (%) among racial groups", width: 260, tickFormat: '%' }));
+      .append(() => legend({ color, title: "Range of low food access pop. (%) among racial groups", width: 250, tickFormat: '%' }));
   
     svg.append("g")
       .attr("id", "color-legend-county")
       .attr("transform", "translate(" + MAP_HEIGHT + ",20)")
       .attr("class", "hidden")
-      .append(() => legend({ color: countyColor, title: "Range of low food access pop. (%) among racial groups", width: 260, tickFormat: '%' }));
+      .append(() => legend({ color: countyColor, title: "Range of low food access pop. (%) among racial groups", width: 250, tickFormat: '%' }));
 
     // -------------------------- States Tooltip Events --------------------------
     const tooltip = svg.append("g");

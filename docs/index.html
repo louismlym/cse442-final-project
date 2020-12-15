@@ -41,8 +41,8 @@
       <div class="section-header">
         <h1>Food Access in the <br> United States</span></h1>
         <br><br>
-        <h3s>“The war against hunger is truly mankind’s war of liberation.” 
-          -John F. Kennedy</h3s>
+        <h3s><b>“The war against hunger is truly mankind’s war of liberation.” 
+          -John F. Kennedy</b></h3s>
       </div>
       <div class="arrow">
         <span></span>
@@ -55,48 +55,41 @@
         <bp>Is there equitable access to to sufficient and healthy food across the 
           United States? How does food insecurity compare across the nation?
         </bp><br><br>
-        <bp><span class="red-color">The goal of our visualization is to highlight 
+        <bp><span class="red-color">The goal of our visualizations is to highlight 
             the correlations between national food insecurity and various factors, 
             particularly geography and race and ethnicity.</span>
         </bp><br><br>
-        <bp>To answer our questions, we used a dataset from the U.S. 
-          Department of Agriculture within their Food Access Research Atlas. 
-          We used their most recent dataset from 2015, and wrangled and 
-          cleaned the data to remove erroneous data and exclusively focus 
-          on the columns we wanted to use for data analysis.
-        </bp><br><br>
-        <bp>Although we designed our visualizations to be accessible and 
-          clear for any audience, our specific target audience are 
-          people living in the United States. <br><br>It is our responsibility 
-          to ensure that residents are informed of the food insecurity 
-          in their local communities and nationwide, how these problems 
-          are exacerbated by race and class, and what individuals can do 
-          to contribute to the reduction of this problem.
+        <bp>We hope to help inform and educate the world about the disparities in food 
+          access in our country. Although our set of visualizations can be valuable 
+          for anyone, our specific target audience are people living in the United 
+          States. It is our responsibility to ensure that residents are informed of 
+          the food insecurity in their local communities and nationwide, how these 
+          problems are exacerbated by demographic characteristics, and what 
+          individuals can do to contribute to the reduction of this problem.
         </bp>
       </div>
     </div>
     <div class="section" data-tooltip="Food Deserts" data-anchor="food-deserts">
       <div class="left-fd-section-header">
         <h2>Prevalence of Food Deserts</h2>
-        <bp><b>Food insecurity</b> is the state of having little to no access to a sufficient 
-          quantity of affordable, nutritious food. It can lead to many adverse physical and mental 
-          effects, including malnutrition, birth defects, aggression, anxiety, and chronic illness.
-        </bp><br><br>
-        <bp>We measured food insecurity in relation to food deserts. An <b>urban 
-          food desert</b> is classified as a county where residents have to drive more than 1 mile 
-          to the nearest grocery store, while a <b>rural food desert</b> is classified as having 
-          to drive more than 10 miles. Although both urban and rural communities suffer from scarce 
-          access to healthy food, urban areas usually get more assistance. Based on the limitations 
-          of our dataset and the fact that there are higher rates of food insecurity in rural food 
-          deserts, we decided to exclusively focus on rural food deserts for our analysis.
-        </bp><br><br>
-        <bp><!--Drag the slider to see how many counties have at least that many food deserts. <-->
+        <p><b>Food insecurity</b> is the state of not having access to enough affordable, 
+          nutritious food. It can have many adverse physical and mental effects, 
+          including malnutrition, birth defects, and chronic illness.
+        </p>
+        <p>We measured food insecurity in relation to food deserts. An <b>urban 
+          food desert</b> is a place where residents have to drive more than 1 mile 
+          to the nearest grocery store, while a <b>rural food desert</b> is one where you have 
+          to drive more than 10 miles. Since rural food deserts have higher rates of food 
+          insecurity and our dataset is limited, we decided to exclusively focus on rural 
+          food deserts for our analysis.
+        </p>
+        <p><!--Drag the slider to see how many counties have at least that many food deserts. <-->
           <span class="red-color">Among the 3,141 counties in the United 
           States, 2,074 of them have at least one food desert. This means that more than 65% of the 
           counties in the nation have limited access to affordable and healthy food.</span>
-        </bp>
+        </p>
       </div>
-      <div class="section-content">
+      <div class="bv-section-content">
         <div id="bubble-vis"></div>
       </div>
       <div class="bubble-vis-how-to">
@@ -107,23 +100,20 @@
     <div class="section" data-tooltip="Racial and Ethnic Correlation" data-anchor="racial-correlation">
       <div class="up-section-header">
         <h2>How are different <span class="red-color">racial and ethnic groups</span> relatively impacted by food insecurity?</h2>
-        <p>The heat map shows the states with the largest disparity between racial/ethnic groups 
-          that live in rural food deserts. South Dakota has one of the deepest hues because it 
-          has the largest disparity. In Huges County, SD, 100% of the Native Hawaiian and other Pacific 
-          Islander population are in a rural food desert, compared to only 2% of the Asian population.
-          <i>Hover or click on the map to see  more detailed information. The linked bar graph shows the 
-            percentage breakdowns of each racial/ethnic group in that specific area, and the percentage 
-            of that group that experiences food insecurity.</i>
+        <p>We investigated if there is a correlation between food insecurity and race and 
+          ethnicity by calculating the percentage of each demographic group that lives in a 
+          food desert in each state and county. Although there is at least a 10% disparity 
+          between different racial and ethnic groups that are facing food insecurity in many 
+          states, some areas are significantly worse than others. For example, Hughes 
+          County, SD has one of the largest disparities with 100% of the Native Hawaiian 
+          and other Pacific Islander population in a rural food desert, compared to only 2% 
+          of the Asian population.
         </p>
-        <p>
-          We are looking at food deserts where there isn't reliable access to affordable or quality food 
+        <!-- <p> We are looking at food deserts where there isn't reliable access to affordable or quality food 
           within 10 miles, so it is worth noting that this could be considered normal in sparsely 
           populated areas, like Yukon-Koyukuk, AK, or pretty impossible in small areas, like Honolulu, HI 
-          that is only 68.5 square miles.          
-          <!-- Honolulu, HI and Yukon-Koyukuk, AK are also interesting. We have defined food deserts here as not having 
-            reliable access to affordable or high quality food within 10 miles. That is a big difficult to do in a 
-            small area like Honolulu, but is considered quite normal in a sparsely populated place like Yukon-Koyukuk. <-->
-        </p>
+          that is only 68.5 square miles.
+        </p>-->
       </div>
       <div class="section-content">
         <div id="map-vis"></div>
@@ -153,23 +143,16 @@
     <div class="section" id="priority-section" data-tooltip="Next Steps" data-anchor="next-steps">
       <div class="left-ns-section-header">
         <h2>Next Steps</h2>
-        <p>“Hunger is not a problem. It is an obscenity. How wonderful it is that nobody 
-          need wait a single moment before starting to improve the world.” 
-          -Anne Frank
+        <p>All of this data begs the question, how can we begin tackling this problem? How 
+          should areas or populations in the United States be prioritized in the fight 
+          against food insecurity?
         </p>
-        <p>All of this data begs the question, what can we do to help? How should areas 
-          or populations in the United States be prioritized when it comes to the long 
-          and hard fight against food insecurity?
+        <p>We explored two common strategies: prioritizing the areas that are the most gravely 
+          impacted by food insecurity, and prioritizing the racial and ethnic demographics 
+          who are the most vulnerable to food insecurity.
         </p>
-        <p>One viable strategy would be to prioritize the counties and areas that are most 
-          gravely impacted by food insecurity. We could also further investigate the different 
-          demographics who are the most vulnerable to food insecurity, and address their 
-          needs first.
-        </p>
-        <p>This visualization allows us to explore both of these options. We included data from the top 15 states that 
-          are the most impacted by food insecurity. The buttons allow us to also compare food insecurity across 
-          different racial/ethnic groups.
-        </p>
+        <p><span class="red-color">We found that North Dakota and South Dakota have the highest levels of food 
+          insecurity in the country, even across different racial and ethnic groups.</span></p>
       </div>
       <div class="section-content">
         <div id="chart-next-steps-vis">
@@ -187,13 +170,33 @@
         </div>
       </div>
     </div>
+    <div class="section" data-tooltip="How You Can Help" data-anchor="how-you-can-help">
+      <div class="section-header">
+        <h2>How You Can Help</h2>
+        <div class="last-page-section-content">
+          <sp>Anne Frank once said, <i>“Hunger is not a problem. It is an obscenity. How wonderful 
+            it is that nobody need wait a single moment before starting to improve the world.”</i><br><br>
+            If you found this project interesting and want to learn more about food access and 
+            insecurity, here are some great resources to get started: <br>
+            <ul>
+              <li>Learn more about food assistance programs from the <a href="https://www.nutrition.gov/topics/food-assistance-programs">USDA</a>
+                 or <a href="https://www.feedingamerica.org/take-action/advocate/federal-hunger-relief-programs?fbclid=IwAR2OBrDqYq9Xt1pu3H0KH1gur0morsIhk09HGjiBXwaAlN15ShOM0UetTPg">Feeding America</a></li>
+              <li><a href="https://www.feedingamerica.org/find-your-local-foodbank?fbclid=IwAR3-My5ilWP12fp40pTeY6d_CciLoVBYq0gRRdONx_p52klBaw5o6QR_Ec8">Find your local food bank</a> to donate or volunteer</li>
+              <li>Play games on <a href="X">Freerice</a>, and donate 5+ grains of rice via the United Nations' World Food Programme for every correct answer</li>
+              <li>List of resources <a href="https://www.ruralhealthinfo.org/topics/food-and-hunger/funding">specifically for rural communities</a></li>
+            </ul>
+            Thank you for doing your part to learn more and help!
+          </sp>
+        </div>
+      </div>
+    </div>
     <div class="section" data-tooltip="About Us" data-anchor="about-us">
       <div class="section-header">
         <h2>Sources</h2>
         <div class="last-page-section-content">
-          <sp>We used a dataset from the U.S. Department of Agriculture's 
+          <sp>We used a dataset from the U.S. Department of Agriculture's 2015 
             <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/">
-              Food Access Research Atlas</a> for 2015. We used their most recent dataset from 2015, and wrangled and cleaned the 
+              Food Access Research Atlas</a>. We used their most recent dataset, and wrangled and cleaned the 
             data to remove erroneous data and exclusively focus on the columns we wanted to use for 
             data analysis.
           </sp>
@@ -203,25 +206,34 @@
         <h2>About Us</h2>
         <div class="last-page-section-content">
           <sp>
-            <a href="https://www.linkedin.com/in/hannahfcheung">
-              <img src="LinkedIn.png" alt="Hannah Cheung's LinkedIn" style="width:14px;height:14px;">
-            </a><b>Hannah Cheung</b> <br>
-
-            <a href="https://www.linkedin.com/in/louis-maliyam/">
-              <img src="LinkedIn.png" alt="Louis Maliyam's LinkedIn" style="width:14px;height:14px;">
-            </a><b>Louis Maliyam</b> <br>
-
-            <a href="https://www.linkedin.com/in/mariam-v-mayanja/">
-              <img src="LinkedIn.png" alt="Mariam Mayanja's LinkedIn" style="width:14px;height:14px;">
-            </a><b>Mariam Mayanja</b> <br>
-
-            <a href="https://www.linkedin.com/in/suchisridhar/">
-              <img src="LinkedIn.png" alt="Suchi Sridhar's LinkedIn" style="width:14px;height:14px;">
-            </a><b>Suchi Sridhar</b> <br>
-
-            <a href="https://www.linkedin.com/in/rachelye1/">
-              <img src="LinkedIn.png" alt="Rachel Ye's LinkedIn" style="width:14px;height:14px;">
-            </a><b>Rachel Ye</b> <br><br>
+            <ul class="list-unstyled list-inline text-center">
+              <li>
+                <img src="HCpp.png" alt= "Hannah Cheung" width="135" height="135">
+                <figcaption><b>Hannah Cheung </b><a href="https://www.linkedin.com/in/hannahfcheung/">
+                  <img src="LinkedIn.png" alt="Hannah Cheung's LinkedIn" style="width:14px;height:14px;"></a></figcaption>
+              </li>
+              <li>
+                <img src="LMpp.jpg" alt= "Louis Maliyam" width="135" height="135">
+                <figcaption><b>Louis Maliyam </b><a href="https://www.linkedin.com/in/louis-maliyam/">
+                  <img src="LinkedIn.png" alt="Louis Maliyam's LinkedIn" style="width:14px;height:14px;"></a></figcaption>
+              </li>
+              <li>
+                <img src="MMpp.jpg" alt= "Mariam Mayanja" width="135" height="135">
+                <figcaption><b>Mariam Mayanja </b><a href="https://www.linkedin.com/in/mariam-v-mayanja/">
+                  <img src="LinkedIn.png" alt="Mariam Mayanja's LinkedIn" style="width:14px;height:14px;"></a></figcaption>
+              </li>
+              <li>
+                <img src="SSpp.jpg" alt= "Suchi Sridhar" width="135" height="135">
+                <figcaption><b>Suchi Sridhar </b><a href="https://www.linkedin.com/in/suchisridhar/">
+                  <img src="LinkedIn.png" alt="Suchi Sridhar's LinkedIn" style="width:14px;height:14px;"></a></figcaption>
+              </li>
+              <li>
+                <img src="RYpp.jpg" alt= "Rachel Ye" width="135" height="135">
+                <figcaption><b>Rachel Ye </b><a href="https://www.linkedin.com/in/rachelye1/">
+                  <img src="LinkedIn.png" alt="Rachel Ye's LinkedIn" style="width:14px;height:14px;"></a></figcaption>
+              </li>
+            </ul>
+            <br>
 
             This project was created for the course <b>CSE 442: Data Visualization</b>, at the Paul 
             G. Allen School of Computer Science & Engineering in the University of Washington. <br><br>

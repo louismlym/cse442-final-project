@@ -93,27 +93,30 @@ async function prepareBubbleVis() {
     g.attr("width", 200)
     .attr("height", 50)
     .append("g")
-    .attr("transform", "translate(120,65)")
+    .attr("transform", "translate(120,60)")
     .call(slider);
 
-    // Legend for a bubble
+    // Title
     svg.append("text")
-    .attr('x', BUBBLE_WIDTH / 2)
-    .attr('y', BUBBLE_HEIGHT - 10)
-    .style("font-size", "13px")
-    .text(" - 1 country");
+    .attr('x', 94)
+    .attr('y', 42)
+    .style("font-size", "12px")
+    .attr("font-weight", "bold")
+    .text("Number of Counties in the United States with 1-10 Food Deserts");
 
-    svg.append("circle")
-    .attr("cx", BUBBLE_WIDTH / 2 - 10)
-    .attr("cy", BUBBLE_HEIGHT - 13)
-    .attr("r", radius)
-    .attr("fill", "black");
+    // // Legend for a bubble
+    // svg.append("text")
+    // .attr('x', 460)
+    // .attr('y', 250)
+    // .style("font-size", "10px")
+    // .attr("font-weight", "bold")
+    // .text("1 county");
 
-    svg.append("text")
-    .attr('x', BUBBLE_WIDTH / 2)
-    .attr('y', 30)
-    .style("font-size", "13px")
-    .text(" - 1 country");
+    // svg.append("circle")
+    // .attr("cx", 455)
+    // .attr("cy", 247)
+    // .attr("r", radius)
+    // .attr("fill", "black");
 
     function transition() {
       const d = data[Math.floor(Math.random() * data.length)];
