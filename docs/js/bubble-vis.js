@@ -40,6 +40,8 @@ async function prepareBubbleVis() {
     const g = svg.append("g");
 
     let value = 1;
+    let oldPercentage = 0;
+    let percentage = 66.03;
     let numCounties = mapCounts[value];
     let desert = "desert";   
 
@@ -93,23 +95,35 @@ async function prepareBubbleVis() {
     .on('onchange', val => {
       value = val;
       numCounties = mapCounts[value];
+      percentage = Math.round(numCounties/3141 * 100 * 100) / 100;
       if (value !== 1) {
         desert = "deserts";
       } else {
         desert = "desert";
       }
+
       svg.select('#stat-update').remove();
       svg.append("text")
-      .attr('x', 90)
+      .attr('x', 155)
       .attr('y', 35)
       .attr('id', 'stat-update')
       .style("font-size", "13px")
       .attr("font-weight", "bold")
-      .text(Math.round(numCounties/3141 * 100 * 100) / 100 + "% of counties in " +
-          "the United States that have at least " + value + " food " + desert +
-          ".");
+      .text("of counties in the United States have at least " + 
+            value + " food " + desert + ".");
       //d3.select("#value").text(val);
+
+      svg.select('#change-number').remove();
+      svg.append("text")
+      .attr('x', 90)
+      .attr('y', 35)
+      .attr('id', 'change-number')
+      .style("font-size", "20px")
+      .attr("font-weight", "bold")
+      .attr('fill', 'red')
+      .text(percentage + "%");
       update();
+
     });
 
     g.attr("width", 200)
@@ -154,14 +168,22 @@ async function prepareBubbleVis() {
     .attr("fill", "black");
 
     svg.append("text")
-    .attr('x', 90)
+    .attr('x', 155)
     .attr('y', 35)
     .attr('id', 'stat-update')
     .style("font-size", "13px")
     .attr("font-weight", "bold")
-    .text(Math.round(numCounties/3141 * 100 * 100) / 100 + "% of counties in " +
-          "the United States that have at least " + value + " food " + desert +
-          ".");
+    .text("of counties in the United States have at least " + 
+          value + " food " + desert + ".");
+    
+    svg.append("text")
+    .attr('x', 90)
+    .attr('y', 35)
+    .attr('id', 'change-number')
+    .style("font-size", "20px")
+    .attr("font-weight", "bold")
+    .attr('fill', 'red')
+    .text(66.03 + "%");
 
     function transition() {
       const d = data[Math.floor(Math.random() * data.length)];
