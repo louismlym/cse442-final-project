@@ -25,14 +25,14 @@ h2 { /* page titles */
   line-height: 25px;
 }
 h3s { /* SSP subtitles */
-  font-size: 16pt;
+  font-size: 17pt;
 }
 h3 { /* RS subtitles */
   font-family: 'Roboto Slab', serif;
   font-size: 16pt;
 }
 bp { /* bigger body text */
-  font-size: 14pt;
+  font-size: 15pt;
   color: #202020;
 }
 p { /* main body text */
