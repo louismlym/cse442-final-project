@@ -109,10 +109,11 @@ async function prepareBubbleVis() {
       }
       svg.select('#stat-update').remove();
       svg.append("text")
-      .attr('x', 45)
-      .attr('y', 30)
+      .attr('x', 90)
+      .attr('y', 42)
       .attr('id', 'stat-update')
       .style("font-size", "13px")
+      .attr("font-weight", "bold")
       .text(numCounties + " out of 3141 counties in " +
           "the United States that have at least " + value + " food " + desert +
           ".");
@@ -162,10 +163,11 @@ async function prepareBubbleVis() {
     .attr("fill", "black");
 
     svg.append("text")
-    .attr('x', 45)
-    .attr('y', 30)
+    .attr('x', 90)
+    .attr('y', 42)
     .attr('id', 'stat-update')
     .style("font-size", "13px")
+    .attr("font-weight", "bold")
     .text(numCounties + " out of 3141 counties in " +
           "the United States have at least " + value + " food desert.");
 
