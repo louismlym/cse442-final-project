@@ -108,6 +108,8 @@ async function prepareBubbleVis() {
       .attr('y', 35)
       .attr('id', 'stat-update')
       .style("font-size", "13px")
+      .transition()
+      .duration(500)
       .attr("font-weight", "bold")
       .text("of counties in the United States have at least " + 
             value + " food " + desert + ".");
@@ -119,6 +121,8 @@ async function prepareBubbleVis() {
       .attr('y', 35)
       .attr('id', 'change-number')
       .style("font-size", "20px")
+      .transition()
+      .duration(500)
       .attr("font-weight", "bold")
       .attr('fill', 'red')
       .text(percentage + "%");

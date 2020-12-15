@@ -85,7 +85,7 @@
         </p>
         <p><!--Drag the slider to see how many counties have at least that many food deserts. <-->
           <span class="red-color">Among the 3,141 counties in the United 
-          States, 2,074 of them have at least one food desert. This means that more than 65% of the 
+          States, 2,074 of them have at least one food desert. This means that more than 66% of the 
           counties in the nation have limited access to affordable and healthy food.</span>
         </p>
       </div>
@@ -95,6 +95,13 @@
       <div class="bubble-vis-how-to">
         <!--<sp>Drag the slider to see the number of counties have at least that many food deserts.
         </sp><-->
+        <div id="value">100</div>
+        <script type ="text/javascript">
+          what();
+          function what() {
+              document.getElementById('value').innerHTML = "";
+          };
+      </script>
       </div>
     </div>
     <div class="section" data-tooltip="Racial and Ethnic Correlation" data-anchor="racial-correlation">
@@ -109,12 +116,37 @@
           and other Pacific Islander population in a rural food desert, compared to only 2% 
           of the Asian population.
         </p>
+        <!-- <p> We are looking at food deserts where there isn't reliable access to affordable or quality food 
+          within 10 miles, so it is worth noting that this could be considered normal in sparsely 
+          populated areas, like Yukon-Koyukuk, AK, or pretty impossible in small areas, like Honolulu, HI 
+          that is only 68.5 square miles.
+        </p>-->
       </div>
       <div class="section-content">
         <div id="map-vis"></div>
+        <!--div id="tbd-linked-state-vis">
+          TBD/UNDER CONSTRUCTION: <br/>
+          There will also be a linked bar graph <br/>
+          that corresponds to the state/county <br/>
+          that is being hovered over.
+        </div-->
         <div id="chart-for-map-vis"></div>
       </div>
     </div>
+    <!--div class="section" data-tooltip="Age Correlation" data-anchor="age-correlation">
+      <div class="up-section-header">
+        <h2>How are different <span class="red-color">age groups</span> relatively impacted by food insecurity?</h2>
+        <p>Similar to racial and ethnic groups' analysis (if we have time)
+        </p>
+      </div>
+    </div>
+    <div class="section" data-tooltip="Vehicle Access Correlation" data-anchor="vehicle-correlation">
+      <div class="up-section-header">
+        <h2>How does someone's <span class="red-color">access to a vehicle</span> affect their food insecurity?</h2>
+        <p>Similar to racial and ethnic groups' analysis (if we have time)
+        </p>
+      </div>
+    </div-->
     <div class="section" id="priority-section" data-tooltip="Next Steps" data-anchor="next-steps">
       <div class="left-ns-section-header">
         <h2>Next Steps</h2>
@@ -141,6 +173,7 @@
             <button id="white-btn">White</button>
             <button id="omultir-btn">Other/Multiple Race</button>
           </div>
+          <!--img src="vis2-sketch.jpg" alt="Temporary Sketch" style="position:relative; width:500px;height:475px;"-->
         </div>
       </div>
     </div>
@@ -219,5 +252,35 @@
       </div>
     </div>
   </div>
+<!-- <div class="content">
+   <section class="title">
+    <a href="/">Food Access in the United States</a>
+  </section>
+
+   <section>
+    <p>
+      <strong>Team Members</strong>: Suchi Sridhar, Mariam Mayanja, Hannah Cheung, Rachel Ye, Louis Maliyam
+    </p>
+  </section>
+
+  <section>
+    <h2>Final Project</h2>
+    <p>The final project will provide hands-on experience designing, implementing, 
+      and deploying interactive visualizations. Your project should address a concrete
+      visualization challenge and should propose a novel, creative solution. The final
+      deliverable will take the form of a visual analysis tool or an explanatory narrative,
+      deployed as an interactive web page. More info on the
+      <a href='https://courses.cs.washington.edu/courses/cse442/20au/fp.html'>course website</a>.
+    </p>
+    
+    <p><em>[Feel free to replace anything in this HTML file with your own content!]</em></p>
+  </section>
+
+  <div class="footer">
+    <a href="https://courses.cs.washington.edu/courses/cse442/20au/">CSE 442 Data Visualization</a>
+    <a href="http://www.washington.edu">University of Washington</a>
+  </div>
+ </div> -->
 </body>
 </html> 
+
