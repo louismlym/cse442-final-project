@@ -191,7 +191,6 @@ async function prepareChartForMapVis() {
       .domain([0, 0.4])
       .range([height, 0]);
     // const color = d3.scaleOrdinal(d3.schemeTableau10).domain(Object.keys(xToDataColumn));
-    
     const xAxis = graph.append('g')
       .attr("class", "x-axis")
       .attr('transform', `translate(0, ${height})`)
@@ -209,10 +208,15 @@ async function prepareChartForMapVis() {
     
     const bars = graph.selectAll(".bar")
       .data(data.filter(d => d.location === "the United States"))
+      .attr("fill", "#ce4e55")
       .enter().append("rect")
         .attr("class", "bar")
         .attr("x", function(d) { return xScale(d.x); })
         .attr("y", function(d) { return yScale(d.y); })
+<<<<<<< HEAD
+=======
+        //.attr("fill", function(d) {return color(d.x); })
+>>>>>>> 600374af67e370f26bb91c56d48b3b75a0600b00
         .attr("fill", "#ce4e55")
         .attr("width", xScale.bandwidth())
         .attr("height", function(d) { return height - yScale(d.y); })
